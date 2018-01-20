@@ -30,11 +30,8 @@ angular
 		    data:userJson
 		  }
    
-   		//realizamos la petición para crear un usuario.
-   		   		
-   		var apiResponse = $http(config);
-   		
-  		apiResponse.success(function(data, status, headers, config) {
+   		//realizamos la petición para crear un usuario.		
+  		$http(config).success(function(data, status, headers, config) {
       			
       		console.log('Creación del usuario OK. Status = ', status)
 
@@ -47,8 +44,8 @@ angular
 
       		//si se ha producido algún error, retornamos un json vacio.
       		return JSON.stringify({});
-  		});   
-
+  		});  
+  		
     }
 
  	console.log('[ServicePage2] Fin service:  ServicePage2');

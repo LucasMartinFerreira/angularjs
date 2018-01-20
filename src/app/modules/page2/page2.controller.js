@@ -47,10 +47,10 @@
 			  );
 
         //realizamos la llamada al servicio.
-        var responseServiceAddUser  = ServicePage2.addUser(userJson);
-         
-        console.log('responseServiceAddUser: ',responseServiceAddUser);
-
+        var responseService = ServicePage2.addUser(userJson);
+          
+        console.log('responseService', responseService);
+        
    		}else{
    			console.log('Alguno o ninguno de los campos ha sido informado.');
    			this.show=true;
