@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="">
+    <h1>Añadir usuario</h1>
+    
+    
+    <form class="user-form" >
+		<div class="user-form_nombre">
+			Nombre
+			<input id="name" type="text" minlength="10" maxlength="150" ng-model="name"
+			required autofocus inputmode="latin-name">
+		</div>   
+
+		<div class="user-form_nombre-usuario">
+			Nombre de Usuario
+			<input id="userName" type="text" minlength="10" maxlength="150" ng-model="username"
+			required inputmode="latin-name">
+		</div> 	
+
+		<div class="user-form_email">
+			Email
+			<input id="email" type="text" required  ng-model="email">
+		</div> 
+
+		<div class="user-form_telefono">
+			Telefono
+			<input id="phone" type="text" required  ng-model="phone">
+		</div> 
+
+		<label style="color:red" ng-show="show">Todos los campos han de ser informados.</label>
+
+		</br>
+		<button ng-click="addUser()" >Añadir</button>
+
+
+    </form>
+
+  </div>
+</div>
