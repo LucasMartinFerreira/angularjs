@@ -1,9 +1,11 @@
 (function() {
   'use strict';
 
+ //añadimos el controlador al modulo de nuestra aplicación.
   angular
-    .module('angularjs')
+    .module('angularjs')   
     .controller('Page2Controller', Page2Controller);
+
 
   /**
   * Función que tendra la comunicación con la vista.
@@ -13,8 +15,10 @@
    
     console.log('[Page2Controller] Inicio controlador:  Page2Controller');
 
-  	//controla que se muestre un texto en rojo si alguno de los campos no ha sido rellenado.
+  	//controla que se muestre un texto en rojo si alguno de los campos no ha sido informado.
     this.show=false;
+
+
 
 
     /**
@@ -42,9 +46,10 @@
 			    }
 			  );
 
-   			console.log('userJson: ', userJson);
-
-        ServicePage2.addUser();
+        //realizamos la llamada al servicio.
+        var responseServiceAddUser  = ServicePage2.addUser(userJson);
+         
+        console.log('responseServiceAddUser: ',responseServiceAddUser);
 
    		}else{
    			console.log('Alguno o ninguno de los campos ha sido informado.');
@@ -76,9 +81,9 @@
 	* Validamos que todos los campos esten informados antes de realizar la petición.
 	* @return boolean
 	**/
-   	function validateFields(data){
+  function validateFields(data){
 
-   		console.log('Validando campos');
+   		console.log('Validando campos...');
 
    		var valid = true;
 
@@ -86,7 +91,7 @@
    			valid = false
    		}
 
-	console.log('Campos validados: ', valid);
+      console.log('Campos validados. Son correctos? ', valid);
 
    		return valid;
-   	};
+  };
