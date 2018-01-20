@@ -56,14 +56,22 @@
    		console.log('[Page2Controller] Fin funcion addUser ');
     };
 
+ 	console.log('[Page2Controller] Fin controlador:  Page2Controller');
+
+
+  }//end controller.
+ 
+
+})();
 
 
 
-     /**********
+
+/**********
 	
-	funciones privadas
+	FUNCIONES PRIVADAS.
 
-	**********/
+**********/
 
 	/**
 	* Validamos que todos los campos esten informados antes de realizar la petición.
@@ -84,12 +92,3 @@
 
    		return valid;
    	};
-
- 	
- 	console.log('[Page2Controller] Fin controlador:  Page2Controller');
-
-
-  }//end controller.
- 
-
-})();
