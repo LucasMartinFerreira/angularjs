@@ -5,21 +5,22 @@
     .module('angularjs')
     .controller('Page2Controller', Page2Controller);
 
-  /** @ngInject */
-  function Page2Controller() {
+  /**
+  * Función que tendra la comunicación con la vista.
+  * @param Servicio inyectadi para la petición http de creación de usuario.
+  **/
+  function Page2Controller(ServicePage2) {
    
     console.log('[Page2Controller] Inicio controlador:  Page2Controller');
 
-	//controla que se muestre un texto en rojo si alguno de los campos no ha sido rellenado.
-   	this.show=false;
-	this.name = '';
-	this.username = '';
-	this.email = '';
-	this.phone = '';
-   
+  	//controla que se muestre un texto en rojo si alguno de los campos no ha sido rellenado.
+    this.show=false;
 
 
-	this.addUser = function (){
+    /**
+    * Función que es llamada cuando el usuario pulsa el botón de "añadir"
+    **/
+    this.addUser = function (){
        
    		console.log('[Page2Controller] Inicio funcion addUser ');
 
@@ -31,7 +32,7 @@
    			this.show=false;
 
    			//creamos json con los datos introducidos en el formulario.
-			var userJson = JSON.stringify(
+        var userJson = JSON.stringify(
 	   			{
 			      name: this.name,
 			      username: this.username,
@@ -39,14 +40,11 @@
 			      phone: this.phone,
 			      userId: 1
 			    }
-			)
+			  );
 
    			console.log('userJson: ', userJson);
 
-   			//TODO llamamos al servicio
-
-
-
+        ServicePage2.addUser();
 
    		}else{
    			console.log('Alguno o ninguno de los campos ha sido informado.');
@@ -54,6 +52,7 @@
    		}
 
    		console.log('[Page2Controller] Fin funcion addUser ');
+
     };
 
  	console.log('[Page2Controller] Fin controlador:  Page2Controller');
@@ -83,8 +82,7 @@
 
    		var valid = true;
 
-   		if(undefined===data.name || undefined===data.username || undefined==data.email || undefined===data.phone || 
-   			""===data.name || ""===data.username || ""==data.email || ""===data.phone){
+   		if(undefined===data.name || undefined===data.username || undefined==data.email || undefined===data.phone){
    			valid = false
    		}
 
