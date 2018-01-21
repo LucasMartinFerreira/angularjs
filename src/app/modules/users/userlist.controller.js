@@ -3,27 +3,26 @@
 
   angular
     .module('angularjs')
-    .controller('UserlistController', ['$scope', UserlistController]);
+    .controller('UserlistController', ['$scope', '$http', UserlistController]);
 
   /** @ngInject */
-  function UserlistController($scope, $window) {
+  function UserlistController( $scope, $http,$window) {
     var vm = this;
 	
 	$scope.buttonvisible = true;
 	
 	this.getUsers = function(){
-		fetch('https://jsonplaceholder.typicode.com/users')
-	  .then(status)
-	  .then(function(response){
-		  return response.json()
-	  })
-	  .then(function(data) {
-		$scope.existResults = true;
-		$scope.userListResult = data;
-	  })
-	  .catch(function(error) {
-		console.log('Fetch Error :-S', error);
-	  });
+		
+		$http({
+		  method: 'GET',
+		  url: 'https://jsonplaceholder.typicode.com/users'
+		}).then(function successCallback(response) {
+			$scope.existResults = true;
+			$scope.userListResult = response.data;
+		  }, function errorCallback(response) {
+			console.log('Fallo obteniendo los usuarios :-S', error);
+		  });
+		  
 	}
 	
 	this.getUsers();
@@ -34,13 +33,5 @@
 	}
   }
   
-  function status(response) {
-	  if (response.status >= 200 && response.status < 300) {
-		return response
-	  } else {
-		return Promise.reject(new Error(response.statusText))
-	  }
-	}
-
 })();
 
