@@ -3,12 +3,14 @@
 
   angular
     .module('angularjs')
-    .controller('MainController', MainController);
+    .controller('MainController', ['$scope', MainController]);
 
   /** @ngInject */
-  function MainController() {
+  function MainController($scope) {
     var vm = this;
-
+	
+	$scope.buttonvisible = true;
+	
 	this.getPosts = function(){
 		
 		fetch('https://jsonplaceholder.typicode.com/users')
@@ -17,7 +19,9 @@
 			  return response.json()
 		  })
 		  .then(function(data) {
-			console.log(data);
+			$scope.userList = data;
+			
+			$scope.buttonvisible = false;
 		  })
 		  .catch(function(error) {
 			console.log('Fetch Error :-S', error);
@@ -35,3 +39,4 @@
 	}
 
 })();
+

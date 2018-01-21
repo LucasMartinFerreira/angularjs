@@ -1,6 +1,18 @@
 <div class="container" ng-controller="MainController as main">
 
   <div class="jumbotron text-center">
-    <button ng-click="main.getPosts()">Obtener usuarios</button>
+    <button ng-click="main.getPosts()" ng-show="buttonvisible">Obtener usuarios</button>
+	
+	
+	
+	
+	<table>
+	  <tr ng-repeat="user in userList">
+		<td>{{ user.name }}</td>
+		<td>{{ user.username }}</td>
+		<td>{{ user.email }}</td>
+		<td>{{ user.address }}</td>
+	  </tr>
+	</table>
   </div>
 </div>
