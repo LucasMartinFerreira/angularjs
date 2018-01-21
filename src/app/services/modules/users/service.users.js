@@ -1,60 +1,78 @@
-
 (function() {
   'use strict';
 
-//añadimos el servicio al módulo de nuestra aplicación.
-angular
-    .module('angularjs')
-  	.service('usersService', usersService);
+  angular.module('angularjs')
+    .factory('usersService', function($http, DOMAIN, headersService, $q) {
 
-  /**
-  * Función que ejecuta el servicio
-  * @param injección del servicio de angular para realizar las peticiones http.
-  **/
-  function usersService($http) {
-   
-    console.log('[usersService] Inicio service:  usersService');
+      /**
+      * Función que crea un usuario a partir de los datos de entrada.
+      * @param json con la información del usuario.
+      **/
+      function addUserRequest(userJson){
 
-    this.addUser = function(userJson){
+        console.log('[usersService] Inicio función addUserRequest.');
 
-    	console.log('[usersService] Inicio función addUser.');
+        //obtenemos las cabeceras de la aplicación.
+        var headers = getHeaders();
 
-    	//obtenemos las cabeceras de la aplicación.
-    	var headers = getHeaders();
+        //creamos la configuración para enviar en la petición http.
+        var config={
+          header: headers,
+          method:"POST",
+          url: DOMAIN.domain+'/users/',
+          data:userJson
+        }
+     
+        //realizamos la petición para crear un usuario.   
+        $http(config).success(function(data, status, headers, config) {
+              
+            console.log('Creación del usuario OK. Status = ', status)
 
-    	//creamos la configuración para enviar en la petición http.
-		var config={
-			header: headers,
-		    method:"POST",
-		    url:"https://jsonplaceholder.typicode.com/users/",
-		    data:userJson
-		  }
-   
-   		//realizamos la petición para crear un usuario.		
-  		$http(config).success(function(data, status, headers, config) {
-      			
-      		console.log('Creación del usuario OK. Status = ', status)
+            //si ha sido exitosa la petición, retornamos el json con la información, así, 
+            // la podemos añadir al listado de nuestra aplicación.
+            return data;
 
-      		//si ha sido exitosa la petición, retornamos el json con la información, así, 
-      		// la podemos añadir al listado de nuestra aplicación.
-      		return data;
+        }).error(function(data, status, headers, config) {
+            console.log('Creación del usuario KO. Status = ', status);
 
-  		}).error(function(data, status, headers, config) {
-      		console.log('Creación del usuario KO. Status = ', status);
+            //si se ha producido algún error, retornamos un json vacio.
+            return JSON.stringify({});
+        }); 
 
-      		//si se ha producido algún error, retornamos un json vacio.
-      		return JSON.stringify({});
-  		});  
-  		
-    }
+         console.log('[usersService] Fin función addUserRequest.');
 
- 	console.log('[usersService] Fin service:  usersService');
+      };
 
-  }//end service.
- 
+      var addUserMethod = function(userJson) {
+
+        console.log('[usersService] Inicio función addUserMethod.');
+
+        var deferred = $q.defer();
+
+        var promises = [addUserRequest(userJson)];
+
+        $q.all(promises).then(function(values) {
+
+          deferred.resolve(values);
+        }, function(msg) {
+          deferred.reject(msg);
+        });
+
+        console.log('[usersService] Fin función addUserMethod.');
+
+        return deferred.promise;
+
+      };
+
+
+      return {
+        addUser : addUserMethod
+      }
+
+
+    });
 
 })();
-
 
 
 /**************
@@ -64,17 +82,16 @@ angular
 **************/
 
 
-
 /**
 * Función que compone las cabeceras necesarias para añadir usuario.
 * @return objeto con las cabeceras.
 **/
 function getHeaders(){
 
-	var header = 
-	   	{
-	   		'Content-type' : 'application/json; charset=UTF-8'
-		};
-	
-	return header;
+  var header = 
+      {
+        'Content-type' : 'application/json; charset=UTF-8'
+    };
+  
+  return header;
 };

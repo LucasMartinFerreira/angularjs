@@ -47,9 +47,13 @@
 			  );
 
         //realizamos la llamada al servicio.
-        var responseService = usersService.addUser(userJson);
+        usersService.addUser(userJson).then(function(response){
+         
+          console.log('response', response);
+
+        });
+       
           
-        console.log('responseService', responseService);
         
    		}else{
    			console.log('Alguno o ninguno de los campos ha sido informado.');
