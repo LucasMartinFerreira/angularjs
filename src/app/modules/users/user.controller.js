@@ -35,7 +35,11 @@
       console.log('Actualizar usuario.');
       vm.showUpdate = true;
 
-      usersService.findUserById(1).then(function(response){
+
+      var indexId = URL.updateUser.length + 1; 
+      var userId = $location.path().substring(indexId);
+
+      usersService.findUserById(userId).then(function(response){
          
          console.log('Respuesta busqueda por id de usuario ', response);
          vm.user = response;
