@@ -3,6 +3,8 @@
   angular
     .module('angularjs')
     .value('URL',{
-      'getListPosts' : '/posts'
+      'getListPosts' : '/posts',
+      'addUser' : '/users/add',
+      'updateUser' : '/users/update'
     })
 })();

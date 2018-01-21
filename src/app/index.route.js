@@ -26,13 +26,21 @@
       });
 
 
-      //enlazamos  la url con la pagina que queremos, en este caso formularo de añadir usuario.
+      //enlazamos  la url con la pagina y controlador que queremos.
       $stateProvider
       .state('add', {
-        url: '/add',
-        templateUrl: 'app/modules/page2/page2.html',
-        controller: 'Page2Controller',
-        controllerAs: 'page2'
+        url: '/users/add',
+        templateUrl: 'app/modules/users/user.html',
+        controller: 'UserController',
+        controllerAs: 'UserController'
+      });
+
+      $stateProvider
+      .state('update', {
+        url: '/users/update/:userId',
+        templateUrl: 'app/modules/users/user.html',
+        controller: 'UserController',
+        controllerAs: 'UserController'
       });
 
     $urlRouterProvider.otherwise('/');
