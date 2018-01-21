@@ -41,8 +41,7 @@
 			      name: this.name,
 			      username: this.username,
 			      email: this.email,
-			      phone: this.phone,
-			      userId: 1
+			      phone: this.phone
 			    }
 			  );
 
