@@ -1,0 +1,18 @@
+<div>
+<blog-navbar></blog-navbar>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+
+      <div ng-repeat ="post in posts.listPosts">
+        <h3>{{post.title}}</h3>
+        <div ng-click="posts.editPost(post.id)">EDITAR post</div>
+        <div ng-click="posts.deletePost(post.id)">Delete Post</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
