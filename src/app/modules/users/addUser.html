@@ -7,24 +7,24 @@
     <form class="user-form" >
 		<div class="user-form_nombre">
 			Nombre
-			<input id="nombre" type="text" minlength="1" maxlength="150" ng-model="addUserController.name"
+			<input id="nombre" type="text" minlength="1" maxlength="150" ng-model="addUserController.user.name"
 			required autofocus inputmode="latin-name">
 		</div>   
 
 		<div class="user-form_nombre-usuario">
 			Nombre de Usuario
-			<input id="userName" type="text" minlength="1" maxlength="150" ng-model="addUserController.username"
+			<input id="userName" type="text" minlength="1" maxlength="150" ng-model="addUserController.user.username"
 			required inputmode="latin-name">
 		</div> 	
 
 		<div class="user-form_email">
 			Email
-			<input id="email" type="text" required  ng-model="addUserController.email">
+			<input id="email" type="text" required  ng-model="addUserController.user.email">
 		</div> 
 
 		<div class="user-form_telefono">
 			Telefono
-			<input id="phone" type="text" required  ng-model="addUserController.phone">
+			<input id="phone" type="text" required  ng-model="addUserController.user.phone">
 		</div> 
 
 		<label style="color:red" ng-show="addUserController.show">Todos los campos han de ser informados.</label>
