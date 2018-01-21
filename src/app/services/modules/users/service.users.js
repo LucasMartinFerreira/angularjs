@@ -5,19 +5,19 @@
 //añadimos el servicio al módulo de nuestra aplicación.
 angular
     .module('angularjs')
-  	.service('ServicePage2', ServicePage2);
+  	.service('usersService', usersService);
 
   /**
   * Función que ejecuta el servicio
   * @param injección del servicio de angular para realizar las peticiones http.
   **/
-  function ServicePage2($http) {
+  function usersService($http) {
    
-    console.log('[ServicePage2] Inicio service:  ServicePage2');
+    console.log('[usersService] Inicio service:  usersService');
 
     this.addUser = function(userJson){
 
-    	console.log('[ServicePage2] Inicio función addUser.');
+    	console.log('[usersService] Inicio función addUser.');
 
     	//obtenemos las cabeceras de la aplicación.
     	var headers = getHeaders();
@@ -48,7 +48,7 @@ angular
   		
     }
 
- 	console.log('[ServicePage2] Fin service:  ServicePage2');
+ 	console.log('[usersService] Fin service:  usersService');
 
   }//end service.
  

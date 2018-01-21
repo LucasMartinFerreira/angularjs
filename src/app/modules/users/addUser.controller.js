@@ -4,16 +4,16 @@
  //añadimos el controlador al modulo de nuestra aplicación.
   angular
     .module('angularjs')   
-    .controller('Page2Controller', Page2Controller);
+    .controller('AddUserController', AddUserController);
 
 
   /**
   * Función que tendra la comunicación con la vista.
   * @param Servicio inyectadi para la petición http de creación de usuario.
   **/
-  function Page2Controller(ServicePage2) {
+  function AddUserController(usersService) {
    
-    console.log('[Page2Controller] Inicio controlador:  Page2Controller');
+    console.log('[AddUserController] Inicio controlador:  AddUserController');
 
   	//controla que se muestre un texto en rojo si alguno de los campos no ha sido informado.
     this.show=false;
@@ -26,7 +26,7 @@
     **/
     this.addUser = function (){
        
-   		console.log('[Page2Controller] Inicio funcion addUser ');
+   		console.log('[AddUserController] Inicio funcion addUser ');
 
    		if(validateFields(this)){
 
@@ -47,7 +47,7 @@
 			  );
 
         //realizamos la llamada al servicio.
-        var responseService = ServicePage2.addUser(userJson);
+        var responseService = usersService.addUser(userJson);
           
         console.log('responseService', responseService);
         
@@ -56,11 +56,11 @@
    			this.show=true;
    		}
 
-   		console.log('[Page2Controller] Fin funcion addUser ');
+   		console.log('[AddUserController] Fin funcion addUser ');
 
     };
 
- 	console.log('[Page2Controller] Fin controlador:  Page2Controller');
+ 	console.log('[AddUserController] Fin controlador:  AddUserController');
 
 
   }//end controller.

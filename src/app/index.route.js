@@ -29,10 +29,10 @@
       //enlazamos  la url con la pagina que queremos, en este caso formularo de añadir usuario.
       $stateProvider
       .state('add', {
-        url: '/add',
-        templateUrl: 'app/modules/page2/page2.html',
-        controller: 'Page2Controller',
-        controllerAs: 'page2'
+        url: '/user/add',
+        templateUrl: 'app/modules/users/addUser.html',
+        controller: 'AddUserController',
+        controllerAs: 'addUserController'
       });
 
     $urlRouterProvider.otherwise('/');

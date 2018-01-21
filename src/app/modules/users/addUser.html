@@ -1,0 +1,39 @@
+<div class="container" ng-controller="AddUserController as addUserController">
+
+  <div class="">
+    <h1>Añadir usuario</h1>
+    
+    
+    <form class="user-form" >
+		<div class="user-form_nombre">
+			Nombre
+			<input id="nombre" type="text" minlength="1" maxlength="150" ng-model="addUserController.name"
+			required autofocus inputmode="latin-name">
+		</div>   
+
+		<div class="user-form_nombre-usuario">
+			Nombre de Usuario
+			<input id="userName" type="text" minlength="1" maxlength="150" ng-model="addUserController.username"
+			required inputmode="latin-name">
+		</div> 	
+
+		<div class="user-form_email">
+			Email
+			<input id="email" type="text" required  ng-model="addUserController.email">
+		</div> 
+
+		<div class="user-form_telefono">
+			Telefono
+			<input id="phone" type="text" required  ng-model="addUserController.phone">
+		</div> 
+
+		<label style="color:red" ng-show="addUserController.show">Todos los campos han de ser informados.</label>
+
+		</br>
+		<button ng-click="addUserController.addUser()" >Añadir</button>
+
+
+    </form>
+
+  </div>
+</div>
