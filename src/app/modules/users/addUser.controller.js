@@ -30,18 +30,15 @@
        
    		console.log('[AddUserController] Inicio funcion addUser ');
 
-   		if(validateFields(this.user)){
+   		if(usersService.validateUserFields(this.user)){
 
    			console.log('Todos los campos han sido informados.');
 
    			//ocultamos el texto de error
    			this.show=false;
 
-   			//creamos json con los datos introducidos en el formulario.
-        var userJson = getFieldData(this.user);
-
-        //realizamos la llamada al servicio.
-        usersService.addUser(userJson).then(function(response){
+   			//realizamos la llamada al servicio.
+        usersService.addUser(this.user).then(function(response){
          
           console.log('response', response);
 
@@ -57,10 +54,6 @@
 
     };
 
-
-
-
-
  	console.log('[AddUserController] Fin controlador:  AddUserController');
 
 
@@ -68,48 +61,3 @@
  
 
 })();
-
-
-
-
-/**********
-	
-	FUNCIONES PRIVADAS.
-
-**********/
-
-	/**
-	* Validamos que todos los campos esten informados antes de realizar la petición.
-	* @return boolean
-	**/
-  function validateFields(data){
-
-   		console.log('Validando campos...');
-
-   		var valid = true;
-
-   		if(undefined===data.name || undefined===data.username || undefined==data.email || undefined===data.phone){
-   			valid = false
-   		}
-
-      console.log('Campos validados. Son correctos? ', valid);
-
-   		return valid;
-  };
-
-  /**
-  * Función que obtiene los datos del usuario informados en el formulario
-  * @param modelo del usuario.
-  **/
-  function getFieldData(userModel){
-
-
-    return JSON.stringify(
-          {
-            name: userModel.name,
-            username: userModel.username,
-            email: userModel.email,
-            phone: userModel.phone
-          }
-        );
-  };

@@ -8,12 +8,15 @@
       * Función que crea un usuario a partir de los datos de entrada.
       * @param json con la información del usuario.
       **/
-      function addUserMethod(userJson) {
+      function addUser(dataUser) {
 
-        console.log('[usersService] Inicio función addUserMethod.');
+        console.log('[usersService] Inicio función addUser.');
 
         //obtenemos las cabeceras de la aplicación.
         var headers = getHeaders();
+
+        //componemos el json a enviar en la petición.
+        var userJson = getFieldData(dataUser);
 
         //creamos la configuración para enviar en la petición http.
         var config={
@@ -44,15 +47,38 @@
         }); 
 
 
-        console.log('[usersService] Fin función addUserMethod.');
+        console.log('[usersService] Fin función addUser.');
 
         return promise;
 
       };
 
 
-      return {
-        addUser : addUserMethod
+    /**
+    * Validamos que todos los campos esten informados antes de realizar la petición.
+    * @return boolean
+    **/
+    function validateUserFields(data){
+
+      console.log('Validando campos...');
+
+      var valid = true;
+
+      if(undefined===data.name || undefined===data.username || undefined==data.email || undefined===data.phone){
+        valid = false
+      }
+
+      console.log('Campos validados. Son correctos? ', valid);
+
+      return valid;
+    };
+
+
+
+    //Retorno del servicio.
+    return {
+        addUser : addUser,
+        validateUserFields:validateUserFields
       }
 
 
@@ -80,4 +106,21 @@ function getHeaders(){
     };
   
   return header;
+};
+
+ /**
+* Función que obtiene los datos del usuario informados en el formulario
+* @param modelo del usuario.
+**/
+function getFieldData(userModel){
+
+
+  return JSON.stringify(
+        {
+          name: userModel.name,
+          username: userModel.username,
+          email: userModel.email,
+          phone: userModel.phone
+        }
+      );
 };
