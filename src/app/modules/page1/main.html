@@ -1,10 +1,13 @@
-<div class="container" ng-controller="MainController as main">
+<div class="container">
 
   <div class="jumbotron text-center">
     <button ng-click="main.getPosts()" ng-show="buttonvisible">Obtener usuarios</button>
 	
+	<br/>
 	
+	<button ng-click="main.onAddClicked()">AÑADIR usuario</button>
 	
+	<hr/>
 	
 	<table>
 	  <tr ng-repeat="user in userList">
