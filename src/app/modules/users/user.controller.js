@@ -15,60 +15,66 @@
    
     console.log('[UserController] Inicio controlador:  UserController');
 
+    var vm = this;
+
+
   	//controla que se muestre un texto en rojo si alguno de los campos no ha sido informado.
-    this.showRedMessage=false;
-    this.showAdd = false;
-    this.showUpdate = false;
+    vm.showRedMessage=false;
+    vm.showAdd = false;
+    vm.showUpdate = false;
 
     //modelo donde almacenamos los datos del formulario.
-    this.user = {};
+    vm.user = {};
 
    if($location.path()===URL.addUser){
       console.log('Añadir nuevo usuario.');
      
-      this.showAdd = true;
-
-
+      vm.showAdd = true;
 
    }else if($location.path().indexOf(URL.updateUser) !==-1){
       console.log('Actualizar usuario.');
-      this.showUpdate = true;
+      vm.showUpdate = true;
 
       usersService.findUserById(1).then(function(response){
          
          console.log('Respuesta busqueda por id de usuario ', response);
-
+         vm.user = response;
         
 
-      }); 
+      }).catch(function(err) {
+            console.log('Error buscando el usuario por id: ', err);
+      });  
+
    }
 
 
     /**
     * Función que es llamada cuando el usuario pulsa el botón de "añadir"
     **/
-    this.addUser = function (){
+    vm.addUser = function (){
        
    		console.log('[UserController] Inicio funcion addUser ');
 
-   		if(usersService.validateUserFields(this.user)){
+   		if(usersService.validateUserFields(vm.user)){
 
    			console.log('Todos los campos han sido informados.');
 
    			//ocultamos el texto de error
-   			this.showRedMessage=false;
+   			vm.showRedMessage=false;
 
    			//realizamos la llamada al servicio.
-        usersService.addUser(this.user).then(function(response){
+        usersService.addUser(vm.user).then(function(response){
          
           console.log('Respuesta creación de usuario: ', response);
 
-        });      
+        }).catch(function(err) {
+            console.log('Error buscando el usuario por id: ', err);
+        });     
         
         
    		}else{
    			console.log('Alguno o ninguno de los campos ha sido informado.');
-   			this.showRedMessage=true;
+   			vm.showRedMessage=true;
    		}
 
    		console.log('[UserController] Fin funcion addUser ');
@@ -79,30 +85,32 @@
     /**
     * Función que se llama cuando el usuario pulsa el boton de "actualizar"
     **/
-    this.updateUser = function(){
+    vm.updateUser = function(){
 
       console.log('[UserController] Inicio funcion updateUser ');
 
-      if(usersService.validateUserFields(this.user)){
+      if(usersService.validateUserFields(vm.user)){
 
         console.log('Todos los campos han sido informados.');
 
         //ocultamos el texto de error
-        this.showRedMessage=false;
+        vm.showRedMessage=false;
 
-        this.user.id =1;
+        vm.user.id =1;
 
         //realizamos la llamada al servicio.
-        usersService.updateUser(this.user).then(function(response){
+        usersService.updateUser(vm.user).then(function(response){
          
           console.log('Respuesta actualización', response);
 
+        }).catch(function(err) {
+            console.log('Error buscando el usuario por id: ', err);
         });      
         
         
       }else{
         console.log('Alguno o ninguno de los campos ha sido informado.');
-        this.showRedMessage=true;
+        vm.showRedMessage=true;
       }
 
       console.log('[UserController] Fin funcion updateUser ');
