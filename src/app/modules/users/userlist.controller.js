@@ -3,10 +3,10 @@
 
   angular
     .module('angularjs')
-    .controller('MainController', ['$scope', MainController]);
+    .controller('UserlistController', ['$scope', UserlistController]);
 
   /** @ngInject */
-  function MainController($scope, $window) {
+  function UserlistController($scope, $window) {
     var vm = this;
 	
 	$scope.buttonvisible = true;
@@ -19,7 +19,7 @@
 	  })
 	  .then(function(data) {
 		$scope.existResults = true;
-		$scope.userList = data;
+		$scope.userListResult = data;
 	  })
 	  .catch(function(error) {
 		console.log('Fetch Error :-S', error);
@@ -30,7 +30,7 @@
 	
 	
 	this.onAddClicked = function(){
-		window.location.href = '/#/add';
+		window.location.href = '/#/users/add';
 	}
   }
   
