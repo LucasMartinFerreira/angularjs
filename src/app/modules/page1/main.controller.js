@@ -18,6 +18,7 @@
 		  return response.json()
 	  })
 	  .then(function(data) {
+		$scope.existResults = true;
 		$scope.userList = data;
 	  })
 	  .catch(function(error) {
