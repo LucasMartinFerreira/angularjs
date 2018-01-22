@@ -8,7 +8,7 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
+      .state('editPost', {
         url: '/',
         templateUrl: 'app/modules/posts/listPost/posts.html',
         controller: 'PostsController',
