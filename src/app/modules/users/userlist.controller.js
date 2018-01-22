@@ -9,7 +9,7 @@
   function userlistController($http, $location, userlistService) {
     var vm = this;
 	
-	vm.buttonvisible = false;
+	vm.buttonvisible = true;
 	
 	userlistService.obtainListUsers();
 	
@@ -18,6 +18,7 @@
 		console.log('[userlistController] obteniendo usuarios');
 		
 		userlistService.obtainListUsers().then(function(response){
+		  vm.existResults = true;
 		  vm.userListResult =  response[0].data;
 		});
 		
@@ -27,6 +28,10 @@
 	
 	vm.onAddClicked = function(){
 		$location.path('/users/add');
+	}
+	
+	vm.onEditClicked = function(userId){
+		$location.path('/users/edit/' + userId);
 	}
   }
   
