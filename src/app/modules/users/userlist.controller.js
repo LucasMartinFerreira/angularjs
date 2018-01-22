@@ -29,7 +29,7 @@
 	}
 	
 	vm.onEditClicked = function(userId){
-		$location.path('/users/edit/' + userId);
+		$location.path('/users/update/' + userId);
 	}
   }
   
