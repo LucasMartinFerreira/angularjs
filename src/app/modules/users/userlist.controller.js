@@ -6,13 +6,11 @@
     .controller('UserlistController', userlistController);
 
   /** @ngInject */
-  function userlistController($http, $location, userlistService) {
+  function userlistController($location, userlistService) {
     var vm = this;
 	
-	vm.buttonvisible = true;
-	
-	userlistService.obtainListUsers();
-	
+	vm.existResults = false;
+		
 	vm.getUsers = function(){
 		
 		console.log('[userlistController] obteniendo usuarios');
