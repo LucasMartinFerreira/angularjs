@@ -3,13 +3,15 @@
 
   angular
     .module('angularjs')
-    .controller('UserlistController', ['$scope', '$http', UserlistController]);
+    .controller('UserlistController', userlistController);
 
   /** @ngInject */
-  function UserlistController( $scope, $http,$window) {
+  function userlistController( $scope, $http,$window, userlistService) {
     var vm = this;
 	
 	$scope.buttonvisible = true;
+	
+	userlistService.obtainListUsers();
 	
 	this.getUsers = function(){
 		
