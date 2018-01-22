@@ -6,27 +6,27 @@
     .controller('UserlistController', userlistController);
 
   /** @ngInject */
-  function userlistController( $scope, $http,$window, userlistService) {
+  function userlistController($http, $location, userlistService) {
     var vm = this;
 	
-	$scope.buttonvisible = true;
+	vm.buttonvisible = false;
 	
 	userlistService.obtainListUsers();
 	
-	this.getUsers = function(){
+	vm.getUsers = function(){
 		
 		console.log('[userlistController] obteniendo usuarios');
 		
 		userlistService.obtainListUsers().then(function(response){
-		  $scope.userListResult =  response[0].data;
+		  vm.userListResult =  response[0].data;
 		});
 		
 	}
 	
-	this.getUsers();
+	vm.getUsers();
 	
-	this.onAddClicked = function(){
-		window.location.href = '/#/users/add';
+	vm.onAddClicked = function(){
+		$location.path('/users/add');
 	}
   }
   

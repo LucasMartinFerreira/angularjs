@@ -10,7 +10,7 @@
 	<hr/>
 	
 	<table>
-		<thead ng-show="existResults">
+		<thead ng-show="userlist.existResults">
 			<tr>
 			  <th>Nombre</th>
 			  <th>Username</th>
@@ -18,7 +18,7 @@
 			  <th>Direcci&oacuten</th>
 			</tr>
 		</thead>
-	  <tr ng-repeat="user in userListResult">
+	  <tr ng-repeat="user in userlist.userListResult">
 	  
 		<td>{{ user.name }}</td>
 		<td>{{ user.username }}</td>
