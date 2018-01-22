@@ -29,7 +29,11 @@
 	}
 	
 	vm.onEditClicked = function(userId){
-		$location.path('/users/update/' + userId);
+		
+		vm.updateUrl = $location.absUrl() + '/update/' + userId;
+		vm.showUpdate = true;
+		
+		//$location.path('/users/update/' + userId);
 	}
   }
   
