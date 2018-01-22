@@ -5,6 +5,7 @@
     .value('URL',{
       'getListPosts' : '/posts',
       'addUser' : '/users/add',
-      'updateUser' : '/users/update'
+      'updateUser' : '/users/update',
+	  'getListUsers' : '/users'
     })
 })();

@@ -17,6 +17,16 @@ angular.module('angularjs')
         }
       };
       return data;
+    },
+	
+	headerGetUsers: function () {
+      var data = {
+        url: URL.getListUsers,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
     }
   }
 });
