@@ -30,20 +30,10 @@
 		<td>
 			<button ng-click="userlist.onEditClicked(user.id)">EDITAR usuario</button>
 		</td>
+		<td>
+			<button ng-click="userlist.onDeleteClicked(user.id)">BORRAR usuario</button>
+		</td>
 	  </tr>
 	</table>
   </div>
-
-  <iframe class="editdialog" ng-show="userlist.showUpdate" ng-src="{{userlist.updateUrl}}" style="
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 100px;
-    top: 100px;
-    width: 400px; /* Full width */
-    height: 300px; /* Full height */
-	border-style: solid;
-    border-width: 5px;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */"></iframe>
 </div>

@@ -6,7 +6,7 @@
     .controller('UserlistController', userlistController);
 
   /** @ngInject */
-  function userlistController($location, userlistService) {
+  function userlistController($location, userlistService, ModalsService) {
     var vm = this;
 	
 	vm.existResults = false;
@@ -25,15 +25,22 @@
 	vm.getUsers();
 	
 	vm.onAddClicked = function(){
-		$location.path('/users/add');
+		console.log('Userlist: Añadir nuevo User')
+		ModalsService.viewModalAddUser();
 	}
 	
 	vm.onEditClicked = function(userId){
+	
+	  console.log('Userlist: Editamos el User Id:', userId)
+	  var data ={
+		id : userId
+	  }
+	  ModalsService.viewModalEditUser(data)
 		
-		vm.updateUrl = $location.absUrl() + '/update/' + userId;
-		vm.showUpdate = true;
+	}
+	
+	vm.onDeleteClicked = function(userId){
 		
-		//$location.path('/users/update/' + userId);
 	}
   }
   
