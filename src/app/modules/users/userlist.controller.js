@@ -31,7 +31,7 @@
 	
 	vm.onEditClicked = function(userId){
 	
-	  console.log('Userlist: Editamos el User Id:', userId)
+	  console.log('Userlist: Editamos el User con Id:', userId)
 	  var data ={
 		id : userId
 	  }
@@ -40,11 +40,10 @@
 	}
 	
 	vm.onDeleteClicked = function(userId){
-		
+		console.log('Userlist: Borramos el User con Id:', userId)
 		userlistService.deleteUser(userId).then(function(response){
 			console.log("Userlist: usuario borrado")
 		});
-		
 	}
   }
   

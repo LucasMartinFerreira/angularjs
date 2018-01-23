@@ -21,11 +21,11 @@ angular.module('angularjs')
       $uibModal.open({
         templateUrl: 'app/modules/users/user.html',
         controller: 'UserController',
-        controllerAs: 'modal',
+        controllerAs: 'UserController',
         backdrop: 'static',
         keyboard: false,
         resolve: {
-          userId: function () {
+          data: function () {
             return data;
           }
         }
@@ -36,9 +36,14 @@ angular.module('angularjs')
       $uibModal.open({
         templateUrl: 'app/modules/users/user.html',
         controller: 'UserController',
-        controllerAs: 'modal',
+        controllerAs: 'UserController',
         backdrop: 'static',
-        keyboard: false
+        keyboard: false,
+		resolve: {
+          data: function () {
+            return "";
+          }
+        }
       });
     };
 	

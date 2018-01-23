@@ -11,7 +11,7 @@
   * Función que tendra la comunicación con la vista.
   * @param Servicio inyectadi para la petición http de creación de usuario.
   **/
-  function UserController(usersService, $location, URL) {
+  function UserController(data, usersService, $location, URL) {
    
     console.log('[UserController] Inicio controlador:  UserController');
 
@@ -26,18 +26,16 @@
     //modelo donde almacenamos los datos del formulario.
     vm.user = {};
 
-   if($location.path()===URL.addUser){
+   if("" === data){
       console.log('Añadir nuevo usuario.');
      
       vm.showAdd = true;
 
-   }else if($location.path().indexOf(URL.updateUser) !==-1){
+   }else if(data != null && data.id != null){
       console.log('Actualizar usuario.');
       vm.showUpdate = true;
 
-
-      var indexId = URL.updateUser.length + 1; 
-      var userId = $location.path().substring(indexId);
+      var userId = data.id;
 
       usersService.findUserById(userId).then(function(response){
          
