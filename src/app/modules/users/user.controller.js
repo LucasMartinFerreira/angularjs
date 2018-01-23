@@ -9,9 +9,10 @@
 
   /**
   * Función que tendra la comunicación con la vista.
-  * @param Servicio inyectadi para la petición http de creación de usuario.
+  * @param Servicio inyectado para la petición http de creación de usuario.
+  * @param Parametro data para el modal
   **/
-  function UserController(data, usersService, $location, URL) {
+  function UserController(data, usersService,$uibModalInstance) {
    
     console.log('[UserController] Inicio controlador:  UserController');
 
@@ -26,12 +27,12 @@
     //modelo donde almacenamos los datos del formulario.
     vm.user = {};
 
-   if("" === data){
+   if(null === data || ""===data){
       console.log('Añadir nuevo usuario.');
      
       vm.showAdd = true;
 
-   }else if(data != null && data.id != null){
+   }else if(null!== data && ""!==data && null!==data.id && ""!== data.id){
       console.log('Actualizar usuario.');
       vm.showUpdate = true;
 
@@ -48,6 +49,10 @@
       });  
 
    }
+
+    vm.closeModal = function(){
+      $uibModalInstance.dismiss();
+    }
 
 
     /**
@@ -69,8 +74,13 @@
          
           console.log('Respuesta creación de usuario: ', response);
 
+          vm.closeModal();
+          
         }).catch(function(err) {
             console.log('Error buscando el usuario por id: ', err);
+
+            vm.closeModal();
+
         });     
         
         
@@ -105,8 +115,13 @@
          
           console.log('Respuesta actualización', response);
 
+          vm.closeModal();
+
         }).catch(function(err) {
             console.log('Error buscando el usuario por id: ', err);
+
+            vm.closeModal();
+
         });      
         
         
@@ -119,7 +134,6 @@
     };
 
  	console.log('[UserController] Fin controlador:  UserController');
-
 
   }//end controller.
  
