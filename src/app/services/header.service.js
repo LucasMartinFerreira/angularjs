@@ -37,6 +37,28 @@ angular.module('angularjs')
         }
       };
       return data;
+    },
+
+  headerAddUser: function(userJson){
+      var data = {
+        url : URL.addUser,
+        headers:{
+           "Content-type": "application/json; charset=UTF-8"
+         },
+         data:userJson
+      };
+      return data;
+    },
+
+  headerUpdateUser: function(userJson, userId){
+      var data = {
+        url : URL.updateUser + userId,
+        headers:{
+           "Content-type": "application/json; charset=UTF-8"
+         },
+         data:userJson
+      };
+      return data;
     }
 	
   }

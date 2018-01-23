@@ -41,7 +41,7 @@
       usersService.findUserById(userId).then(function(response){
          
          console.log('Respuesta busqueda por id de usuario ', response);
-         vm.user = response;
+         vm.user = response[0].data;
         
 
       }).catch(function(err) {
@@ -72,12 +72,13 @@
    			//realizamos la llamada al servicio.
         usersService.addUser(vm.user).then(function(response){
          
-          console.log('Respuesta creación de usuario: ', response);
+          console.log('Respuesta creación de usuario: ', response[0].data);
 
           vm.closeModal();
           
         }).catch(function(err) {
-            console.log('Error buscando el usuario por id: ', err);
+
+            console.log('Error buscando el usuario por id: ',response[0].err);
 
             vm.closeModal();
 
@@ -113,12 +114,12 @@
         //realizamos la llamada al servicio.
         usersService.updateUser(vm.user).then(function(response){
          
-          console.log('Respuesta actualización', response);
+          console.log('Respuesta actualización', response[0].data);
 
           vm.closeModal();
 
         }).catch(function(err) {
-            console.log('Error buscando el usuario por id: ', err);
+            console.log('Error buscando el usuario por id: ',response[0].err);
 
             vm.closeModal();
 

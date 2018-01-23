@@ -2,7 +2,26 @@
   'use strict';
 
   angular.module('angularjs')
-    .factory('usersService', function($http, DOMAIN, headersService, $q) {
+    .factory('usersService', function($http, DOMAIN, headersService, $q,HttpSrv) {
+
+
+      function addUserMethod(userJson){
+
+        var configuration = headersService.headerAddUser(userJson);
+         return HttpSrv.post(configuration);
+      };
+
+
+      function updateUserMethod(userJson, userId){
+        var configuration = headersService.headerUpdateUser(userJson, userId);
+         return HttpSrv.put(configuration);
+      }
+
+
+      function findUserByIdMethod(userId){
+        var configuration = headersService.headerUser(userId);
+         return HttpSrv.get(configuration);
+      }
 
       /**
       * Función que crea un usuario a partir de los datos de entrada.
@@ -12,44 +31,21 @@
 
         console.log('[usersService] Inicio función addUser.');
 
-        //obtenemos las cabeceras de la aplicación.
-        var headers = getHeaders();
+        var deferred = $q.defer();
 
-        //componemos el json a enviar en la petición.
-        var userJson = getFieldData(dataUser);
+        var promises = [addUserMethod(getFieldData(dataUser))];
 
-        //creamos la configuración para enviar en la petición http.
-        var config={
-          header: headers,
-          method:"POST",
-          url: DOMAIN.domain+'/users/',
-          data:userJson
-        }
+        $q.all(promises).then(function(values) {
 
-        var defered = $q.defer();
-        var promise = defered.promise;
+          deferred.resolve(values);
 
-     
-        //realizamos la petición para crear un usuario.   
-        $http(config).success(function(data, status) {
-              
-            console.log('Creación del usuario OK. Status = ', status)
-
-            //si ha sido exitosa la petición, retornamos el json con la información, así, 
-            // la podemos añadir al listado de nuestra aplicación.
-           defered.resolve(data);
-
-        }).error(function(data, status) {
-            console.log('Creación del usuario KO. Status = ', status);
-
-            //si se ha producido algún error, retornamos un json vacio.
-            defered.resolve(JSON.stringify({}));
-        }); 
-
+        }, function(msg) {
+          deferred.reject(msg);
+        });
 
         console.log('[usersService] Fin función addUser.');
 
-        return promise;
+        return deferred.promise;
 
       };
 
@@ -62,44 +58,23 @@
 
         console.log('[usersService] Inicio función updateUser.');
 
-        //obtenemos las cabeceras de la aplicación.
-        var headers = getHeaders();
+        var deferred = $q.defer();
 
-        //componemos el json a enviar en la petición.
-        var userJson = getFieldData(dataUser);
+        var promises =  [updateUserMethod(getFieldData(dataUser), dataUser.id)];
 
-        //creamos la configuración para enviar en la petición http.
-        var config={
-          header: headers,
-          method:"PATCH",
-          url: DOMAIN.domain+'/users/'+dataUser.id,
-          data:userJson
-        }
+        $q.all(promises).then(function(values) {
 
-        var defered = $q.defer();
-        var promise = defered.promise;
+          deferred.resolve(values);
 
-     
-        //realizamos la petición para actualizar un usuario.   
-        $http(config).success(function(data, status) {
-              
-            console.log('Actualización del usuario OK. Status = ', status)
+        }, function(msg) {
+          deferred.reject(msg);
+        });
 
-            //si ha sido exitosa la petición, retornamos el json con la información, así, 
-            // la podemos añadir al listado de nuestra aplicación.
-           defered.resolve(data);
-
-        }).error(function(data, status) {
-            console.log('Actualización del usuario KO. Status = ', status);
-
-            //si se ha producido algún error, retornamos un json vacio.
-            defered.resolve(JSON.stringify({}));
-        }); 
 
 
         console.log('[usersService] Fin función updateUser.');
 
-        return promise;
+        return deferred.promise;
 
       };
 
@@ -112,39 +87,23 @@
 
         console.log('[usersService] Inicio función findUserById.');
 
-        //obtenemos las cabeceras de la aplicación.
-        var headers = getHeaders();
+        
+        var deferred = $q.defer();
 
-        //creamos la configuración para enviar en la petición http.
-        var config={
-          header: headers,
-          method:"GET",
-          url: DOMAIN.domain+'/users/'+userId
-        }
+        var promises =  [findUserByIdMethod(userId)];
 
-        var defered = $q.defer();
-        var promise = defered.promise;
+        $q.all(promises).then(function(values) {
 
-     
-        //realizamos la petición
-        $http(config).success(function(data, status) {
-              
-            console.log('Usuario encontrado OK. Status = ', status)
+          deferred.resolve(values);
 
-            //si ha sido exitosa la petición, retornamos el json con la información.
-           defered.resolve(data);
-
-        }).error(function(data, status) {
-            console.log('Usuario encontrado KO. Status = ', status);
-
-            //si se ha producido algún error, retornamos un json vacio.
-            defered.resolve(JSON.stringify({}));
-        }); 
+        }, function(msg) {
+          deferred.reject(msg);
+        });
 
 
         console.log('[usersService] Fin función findUserById.');
 
-        return promise;
+         return deferred.promise;
 
       };
 
@@ -191,20 +150,6 @@
 
 **************/
 
-
-/**
-* Función que compone las cabeceras necesarias para añadir usuario.
-* @return objeto con las cabeceras.
-**/
-function getHeaders(){
-
-  var header = 
-      {
-        'Content-type' : 'application/json; charset=UTF-8'
-    };
-  
-  return header;
-};
 
  /**
 * Función que obtiene los datos del usuario informados en el formulario

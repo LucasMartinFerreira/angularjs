@@ -4,8 +4,8 @@
     .module('angularjs')
     .value('URL',{
       'getListPosts' : '/posts',
-      'addUser' : '/users/add',
-      'updateUser' : '/users/update',
+      'addUser' : '/users/',
+      'updateUser' : '/users/',
 	  'getListUsers' : '/users'
     })
 })();
