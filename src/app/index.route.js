@@ -10,7 +10,7 @@
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'app/modules/posts/posts.html',
+        templateUrl: 'app/modules/posts/listPost/posts.html',
         controller: 'PostsController',
         controllerAs: 'posts'
       });

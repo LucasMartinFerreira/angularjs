@@ -1,0 +1,31 @@
+.show-modal-edit-post {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 600;
+
+  .show-modal-edit-post_all-content{
+    width: 680px;
+
+    .show-modal-edit-post_modal_header {
+      background: #000000;
+      color: #fff;
+      height: 40px;
+      display: block;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .show-modal-edit-post_content{
+      background-color: #efefef;
+      font-size: 17px;
+      line-height: 20px;
+      font-weight: 300;
+      color: #0000AA;
+      text-align: center;
+      height: 500px;
+    }
+
+  }
+}

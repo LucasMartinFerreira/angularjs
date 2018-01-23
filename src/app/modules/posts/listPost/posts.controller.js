@@ -6,7 +6,7 @@
     .controller('PostsController', PostsController);
 
   /** @ngInject */
-  function PostsController(postService) {
+  function PostsController(postService,ModalsService) {
     var vm = this;
 
     /**
@@ -22,6 +22,10 @@
      */
     vm.editPost = function(idPost){
       console.log('Editamos el Post Id:', idPost)
+      var data ={
+        id : idPost
+      }
+      ModalsService.viewModalEditPost(data, 'editPostController')
     }
 
     /**
