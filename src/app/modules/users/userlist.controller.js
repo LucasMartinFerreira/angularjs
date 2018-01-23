@@ -41,6 +41,10 @@
 	
 	vm.onDeleteClicked = function(userId){
 		
+		userlistService.deleteUser(userId).then(function(response){
+			console.log("Userlist: usuario borrado")
+		});
+		
 	}
   }
   

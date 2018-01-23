@@ -27,6 +27,17 @@ angular.module('angularjs')
         }
       };
       return data;
+    },
+	
+	headerUser: function (userId) {
+      var data = {
+        url: URL.getListUsers + "/" + userId,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
     }
+	
   }
 });
