@@ -1,40 +1,57 @@
-<div class="container">
+<div class="show-modal-edit-user">
+  <div class="show-modal-edit-user_all-content">
 
-  <div class="">
-    <h1>Añadir usuario</h1>
-    
-    
-    <form class="user-form" >
-		<div class="user-form_nombre">
-			Nombre
-			<input id="nombre" type="text" minlength="1" maxlength="150" ng-model="UserController.user.name"
-			required autofocus inputmode="latin-name">
-		</div>   
+    <div class="show-modal-edit-user_modal_header" ng-show="UserController.showAdd">
+    	 AÑADIR USUARIO
+    </div>
 
-		<div class="user-form_nombre-usuario">
-			Nombre de Usuario
-			<input id="userName" type="text" minlength="1" maxlength="150" ng-model="UserController.user.username"
-			required inputmode="latin-name">
-		</div> 	
+   	<div class="show-modal-edit-user_modal_header" ng-show="UserController.showUpdate">
+    	 ACTUALIZAR USUARIO
+    </div>
 
-		<div class="user-form_email">
-			Email
-			<input id="email" type="text" required  ng-model="UserController.user.email">
-		</div> 
+	<div class="show-modal-edit-user_content">
+      
+      <div class="show-modal-edit-user_title">
+        <label>Nombre:</label>
+        <input ng-model="UserController.user.name">
+      </div>
 
-		<div class="user-form_telefono">
-			Telefono
-			<input id="phone" type="text" required  ng-model="UserController.user.phone">
-		</div> 
+      <div class="show-modal-edit-user_title">
+        <label>Nombre de usuario:</label>
+        <input ng-model="UserController.user.username">
+      </div>
 
-		<label style="color:red" ng-show="UserController.showRedMessage">Todos los campos han de ser informados.</label>
+      <div class="show-modal-edit-user_title">
+        <label>Email:</label>
+        <input ng-model="UserController.user.email">
+      </div>
 
-		</br>
-		<button ng-click="UserController.addUser()" ng-show="UserController.showAdd" >Añadir</button>
-		<button ng-click="UserController.updateUser()" ng-show="UserController.showUpdate" >Actualizar</button>
+      <div class="show-modal-edit-user_title">
+        <label>Phone:</label>
+        <input ng-model="UserController.user.phone">
+      </div>
 
 
-    </form>
+      <div class="show-modal-edit-user_content-buttons">
+        
+        <div class="show-modal-edit-user_content-button-edit">
+          <button  ng-show="UserController.showAdd" ng-click="UserController.addUser()"  
+          		   type="button" class="btn btn-primary">Añadir</button>
+        </div>
+
+        <div class="show-modal-edit-user_content-button-edit">
+          <button  ng-show="UserController.showUpdate" ng-click="UserController.updateUser()"  
+          		   type="button" class="btn btn-primary">Actualizar</button>
+        </div>
+
+        <div class="show-modal-edit-user_content-button-close">
+          <button  ng-click="UserController.closeModal()" type="button" class="btn btn-primary">Cerrar</button>
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
+
 </div>

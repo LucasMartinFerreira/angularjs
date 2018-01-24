@@ -1,0 +1,66 @@
+.show-modal-edit-user {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 600;
+
+  .show-modal-edit-user_all-content{
+    width: 680px;
+    text-align: left;
+    .show-modal-edit-user_modal_header {
+      background: #000000;
+      color: #fff;
+      height: 40px;
+      display: block;
+      padding-left: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .show-modal-edit-user_content{
+      background-color: #efefef;
+      font-size: 17px;
+      line-height: 20px;
+      font-weight: 300;
+      color: #0000AA;
+      text-align: center;
+      height: 300px;
+
+      label{
+        width:18%;
+        text-align: right;
+      }
+      input{
+        width: 70%;
+      }
+
+      .show-modal-edit-user_title{
+        padding: 15px 0px 15px 0px;
+      }
+
+      .show-modal-edit-user_body{
+        padding: 15px 0px 15px 0px;
+      }
+
+      .show-modal-edit-user_content-buttons{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 50% 50%;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        .show-modal-edit-user_content-button-edit{
+
+        }
+
+        .show-modal-edit-user_content-button-close{
+
+        }
+      }
+
+    }
+
+  }
+}
