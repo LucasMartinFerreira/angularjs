@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('blogNavbar', [])
-    .directive('blogNavbar', headerBlog);
+    .module('blogHeader', [])
+    .directive('blogHeader', blogHeader);
 
   /** @ngInject */
-  function headerBlog() {
+  function blogHeader() {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/header/header.html',

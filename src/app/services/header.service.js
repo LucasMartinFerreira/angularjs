@@ -18,10 +18,20 @@ angular.module('angularjs')
       };
       return data;
     },
-	
 	headerGetUsers: function () {
       var data = {
         url: URL.getListUsers,
+		headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
+		
+
+    headerGetCommentsListPosts: function (idPost) {
+      var data = {
+        url: URL.getListPosts +'/'+idPost+'/comments',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         }
@@ -32,6 +42,16 @@ angular.module('angularjs')
 	headerUser: function (userId) {
       var data = {
         url: URL.getListUsers + "/" + userId,
+		headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
+
+    headerGetInfoPost: function (idPost) {
+      var data = {
+        url: URL.getListPosts +'/'+idPost,
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         }
@@ -46,6 +66,22 @@ angular.module('angularjs')
            "Content-type": "application/json; charset=UTF-8"
          },
          data:userJson
+		};
+      return data;
+    },
+		 
+    headerSaveEditPost: function (objectPost) {
+      var data = {
+        url: URL.getListPosts +'/'+objectPost.id,
+        data :JSON.stringify({
+          id: objectPost.id,
+          title: objectPost.title,
+          body: objectPost.body,
+          userId: objectPost.userId
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
       };
       return data;
     },
@@ -57,6 +93,16 @@ angular.module('angularjs')
            "Content-type": "application/json; charset=UTF-8"
          },
          data:userJson
+		 };
+      return data;
+    },
+	
+    headerDeletePost: function (objectPost) {
+      var data = {
+        url: URL.getListPosts +'/'+objectPost.id,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
       };
       return data;
     }
