@@ -17,6 +17,53 @@ angular.module('angularjs')
         }
       };
       return data;
+    },
+
+    headerGetCommentsListPosts: function (idPost) {
+      var data = {
+        url: URL.getListPosts +'/'+idPost+'/comments',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
+
+
+    headerGetInfoPost: function (idPost) {
+      var data = {
+        url: URL.getListPosts +'/'+idPost,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
+
+    headerSaveEditPost: function (objectPost) {
+      var data = {
+        url: URL.getListPosts +'/'+objectPost.id,
+        data :JSON.stringify({
+          id: objectPost.id,
+          title: objectPost.title,
+          body: objectPost.body,
+          userId: objectPost.userId
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
+
+    headerDeletePost: function (objectPost) {
+      var data = {
+        url: URL.getListPosts +'/'+objectPost.id,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
     }
   }
 });
