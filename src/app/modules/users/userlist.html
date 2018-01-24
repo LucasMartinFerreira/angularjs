@@ -7,6 +7,9 @@
 	
 	<button ng-click="userlist.onAddClicked()">AÑADIR usuario</button>
 	
+	<br/>
+	Filtrar por Nombre:
+	<input type="text" ng-model="user.search.name" function-model="user">
 	<hr/>
 	
 	<table>
@@ -18,7 +21,7 @@
 			  <th>Direcci&oacuten</th>
 			</tr>
 		</thead>
-	  <tr ng-repeat="user in userlist.userListResult">
+	  <tr ng-repeat="user in userlist.userListResult | filter: user.search">
 	  
 		<td>{{ user.name }}</td>
 		<td>{{ user.username }}</td>
