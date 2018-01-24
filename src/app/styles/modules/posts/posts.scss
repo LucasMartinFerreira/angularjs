@@ -1,0 +1,37 @@
+.container {
+  &.container-post-list {
+    padding-top: 165px;
+
+    input{
+      background: #FAFAFA;
+      border: none;
+      width: 93%;
+      height: 40px;
+      font-family: 'Arial';
+      font-size: 20px;
+      color: black;
+    }
+
+    input:focus{
+      outline: none;
+    }
+
+    .post-list_content-search{
+      text-align: left;
+      padding-bottom: 30px;
+    }
+  }
+  .post-list{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 61% repeat(3, 15%);
+    align-items: center;
+    .post-list_content-bottom{
+
+    }
+
+
+  }
+}
+
+

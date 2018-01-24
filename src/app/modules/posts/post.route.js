@@ -8,11 +8,14 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('editPost', {
-        url: '/',
-        templateUrl: 'app/modules/posts/listPost/posts.html',
-        controller: 'PostsController',
-        controllerAs: 'posts'
+      .state('commentPost', {
+        url: '/commentPost',
+        params: {
+          idPost: null
+        },
+        templateUrl: 'app/modules/posts/commentPost/commentPost.html',
+        controller: 'commentPostController',
+        controllerAs: 'commentPost'
       });
 
     $urlRouterProvider.otherwise('/');

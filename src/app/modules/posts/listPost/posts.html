@@ -1,18 +1,31 @@
-<div>
-<blog-navbar></blog-navbar>
-  <div class="container">
-
+<div class="content-all-header">
+  <blog-header></blog-header>
+  <blog-navbar></blog-navbar>
+</div>
+  <div class="container container-post-list">
     <div class="jumbotron text-center">
-
-      <div ng-repeat ="post in posts.listPosts">
+      <div class="post-list_content-search">
+        <label>Buscar:</label>
+        <input type="text" ng-model="post.search.title" function-model="post" ng-change="users.change()">
+        <search class="searchIcon" ng-model="post.search.title" function-model="post" page-controller="'posts'"></search>
+      </div>
+      <div class="post-list" ng-repeat ="post in posts.listPosts | filter: post.search" >
         <h3>{{post.title}}</h3>
-        <div ng-click="posts.editPost(post.id)">EDITAR post</div>
-        <div ng-click="posts.deletePost(post.id)">Delete Post</div>
+        <div class="post-list_content-bottom">
+          <button  ng-click="posts.viewComments(post.id)" type="button" class="btn btn-primary">COMENTARIOS</button>
+        </div>
+        <div class="post-list_content-bottom">
+          <button  ng-click="posts.editPost(post.id)" type="button" class="btn btn-primary">EDITAR</button>
+        </div>
+        <div class="post-list_content-bottom">
+          <button  ng-click="posts.deletePost(post)" type="button" class="btn btn-primary">BORRAR</button>
+        </div>
+
       </div>
 
     </div>
-  </div>
 </div>
+
 
 
 

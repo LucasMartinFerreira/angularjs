@@ -4,9 +4,22 @@
       EDITAR POST
     </div>
     <div class="show-modal-edit-post_content">
-     Editar post con el id : {{modal.id}}
-      <button  ng-click="modal.closeModal()" type="button" class="btn btn-primary">Cerrar Modal</button>
+      <div class="show-modal-edit-post_title">
+        <label>Título:</label>
+        <input ng-model="modal.title">
+      </div>
+      <div class="show-modal-edit-post_body">
+        <label>Contenido:</label>
+        <input ng-model="modal.body">
+      </div>
+      <div class="show-modal-edit-post_content-buttons">
+        <div class="show-modal-edit-post_content-button-edit">
+          <button  ng-click="modal.savePost(modal)"  type="button" class="btn btn-primary">GUARDAR</button>
+        </div>
+        <div class="show-modal-edit-post_content-button-close">
+          <button  ng-click="modal.closeModal()" type="button" class="btn btn-primary">CERRAR</button>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
