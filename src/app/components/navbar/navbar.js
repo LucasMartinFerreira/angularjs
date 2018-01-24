@@ -2,22 +2,19 @@
   'use strict';
 
   angular
-    .module('blogNavbar', [])
-    .directive('blogNavbar', blogNavbar);
+    .module('blogMenu', [])
+    .directive('blogMenu', blogMenu);
 
   /** @ngInject */
-  function blogNavbar() {
+  function blogMenu() {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
-      controller: navbarController,
+      controller: function(){},
       controllerAs: 'navbar'
     };
     return directive;
   }
 
-  /** @ngInject */
-  function navbarController() {
-    console.log('Controlador menu de navegacion ')
-  }
+
 })();

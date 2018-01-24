@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('angularjs',[])
+    .module('search',[])
     .directive('search', function(){
 
       return{

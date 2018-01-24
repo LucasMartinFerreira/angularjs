@@ -89,6 +89,7 @@
         vm.listPosts =  response[0].data;
       });
     }else{
+      console.log('Action', action)
       if(action ==='edit'){
         createArrayForEditListPost();
       }else{
