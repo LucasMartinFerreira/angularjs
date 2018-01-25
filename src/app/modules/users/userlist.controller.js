@@ -36,12 +36,13 @@
 	}
 	
 	vm.onEditClicked = function(user){
-	
-	  console.log('Userlist: Editamos el User con Id:', user.id)
+		
+		var copiedUser = $.extend({}, user);
+	  console.log('Userlist: Editamos el User con Id:', copiedUser.id)
 	  var data ={
-		user : user
+		user : copiedUser
 	  }
-	  ModalsService.viewModalEditUser(user)
+	  ModalsService.viewModalEditUser(copiedUser)
 		
 	}
 	
