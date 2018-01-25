@@ -58,6 +58,7 @@
 	* al usar un servicio dummy, no se borran realmente los datos, para que se refleje en la pantalla los eliminamos del listado local
 	*/
 	vm.deleteUserFromTemporalData = function(userId){
+		temporalUserList = serviceGetterAndSetterUsers.get();
 		var index = -1;
 		for(var i=0; i<temporalUserList.length; i++){
 			var user = temporalUserList[i];
@@ -69,6 +70,7 @@
 		if(index > 0){
 			temporalUserList.remove(index);
 		}
+		serviceGetterAndSetterUsers.set(temporalUserList);
 		vm.userListResult =  temporalUserList;
 	}
 	

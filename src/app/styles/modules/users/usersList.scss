@@ -30,6 +30,24 @@
 
     }
 
+	.user-data{
+		display: grid;
+		
+		grid-template-areas: "name username email phone"
+	}
+	
+	.name{
+		grid-area: name;
+	}
+	.username{
+		grid-area: username;
+	}
+	.email{
+		grid-area: email;	
+	}
+	.phone{
+		grid-area: phone;
+	}
 
   }
 }
