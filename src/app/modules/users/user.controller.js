@@ -32,21 +32,12 @@
      
       vm.showAdd = true;
 
-   }else if(null!== data && ""!==data && null!==data.id && ""!== data.id){
+   }else if(null!== data && ""!==data){
       console.log('Actualizar usuario.');
       vm.showUpdate = true;
 
-      var userId = data.id;
-
-      usersService.findUserById(userId).then(function(response){
-         
-         console.log('Respuesta busqueda por id de usuario ', response);
-         vm.user = response[0].data;
-        
-
-      }).catch(function(err) {
-            console.log('Error buscando el usuario por id: ', err);
-      });  
+      //seteamos el usuario para precargarlo en el modal.
+      vm.user = data;
 
    }
 
@@ -72,13 +63,15 @@
    			//realizamos la llamada al servicio.
         usersService.addUser(vm.user).then(function(response){
          
+          //respondemos con el resultado de la peticion y se lo enviamos al listado.
           var objUser =  response[0].data;
-
           console.log('Respuesta creación de usuario: ', objUser);
 
+          //enviamos el resultado al listado.
           $state.transitionTo($state.current, {objectUser: objUser, action: 'add'}, { reload: true})
           toastr.success('Usuario creado correctamente');
 
+          //cerramos el modal.
           vm.closeModal();
           
         }).catch(function(err) {
@@ -114,16 +107,15 @@
         //ocultamos el texto de error
         vm.showRedMessage=false;
 
-        vm.user.id =1;
-
         //realizamos la llamada al servicio.
         usersService.updateUser(vm.user).then(function(response){
-         
+        
+          //respuesta de la api 
           var objUser =  response[0].data;
 
           console.log('Respuesta actualización', objUser);
 
-
+          //enviamos la respuesta.
           $state.transitionTo($state.current, {objectUser: objUser, action: 'edit'}, { reload: true})
           toastr.success('Usuario actualizado correctamente');
 

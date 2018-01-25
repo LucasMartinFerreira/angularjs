@@ -45,7 +45,7 @@
 
       $stateProvider
       .state('update', {
-        url: '/users/update/:userId',
+        url: '/users/update',
         templateUrl: 'app/modules/users/user.html',
         controller: 'UserController',
         controllerAs: 'UserController'

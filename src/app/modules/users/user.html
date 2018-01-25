@@ -34,6 +34,10 @@
 
       <div class="show-modal-edit-user_content-buttons">
         
+        <div style="color:red" ng-show="UserController.showRedMessage">
+            <label>Todos los campos han de estar informados.</label>
+        </div>
+
         <div class="show-modal-edit-user_content-button-edit">
           <button  ng-show="UserController.showAdd" ng-click="UserController.addUser()"  
           		   type="button" class="btn btn-primary">Añadir</button>
