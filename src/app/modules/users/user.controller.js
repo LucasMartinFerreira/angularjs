@@ -12,7 +12,7 @@
   * @param Servicio inyectado para la petición http de creación de usuario.
   * @param Parametro data para el modal
   **/
-  function UserController(data, usersService,$uibModalInstance) {
+  function UserController(data, usersService,$uibModalInstance,$state,toastr) {
    
     console.log('[UserController] Inicio controlador:  UserController');
 
@@ -72,7 +72,12 @@
    			//realizamos la llamada al servicio.
         usersService.addUser(vm.user).then(function(response){
          
-          console.log('Respuesta creación de usuario: ', response[0].data);
+          var objUser =  response[0].data;
+
+          console.log('Respuesta creación de usuario: ', objUser);
+
+          $state.transitionTo($state.current, {objectUser: objUser, action: 'add'}, { reload: true})
+          toastr.success('Usuario creado correctamente');
 
           vm.closeModal();
           
@@ -114,7 +119,13 @@
         //realizamos la llamada al servicio.
         usersService.updateUser(vm.user).then(function(response){
          
-          console.log('Respuesta actualización', response[0].data);
+          var objUser =  response[0].data;
+
+          console.log('Respuesta actualización', objUser);
+
+
+          $state.transitionTo($state.current, {objectUser: objUser, action: 'edit'}, { reload: true})
+          toastr.success('Usuario actualizado correctamente');
 
           vm.closeModal();
 

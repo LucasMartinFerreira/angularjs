@@ -6,11 +6,13 @@
     .controller('UserlistController', userlistController);
 
   /** @ngInject */
-  function userlistController($location, userlistService, ModalsService) {
+  function userlistController($location, userlistService, ModalsService,$stateParams) {
     var vm = this;
 	
 	var temporalUserList;
 	
+	var objectUser = $stateParams.objectUser;
+
 	vm.existResults = false;
 		
 	vm.getUsers = function(){

@@ -24,6 +24,10 @@
       $stateProvider
       .state('users', {
         url: '/users',
+        params: {
+          objectUser: null,
+          action :null
+        },
         templateUrl: 'app/modules/users/userlist.html',
         controller: 'UserlistController',
         controllerAs: 'userlist'
