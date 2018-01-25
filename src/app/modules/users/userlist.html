@@ -5,42 +5,30 @@
 <div class="container container-list-users">
 
   <div class="jumbotron text-center">
-    <button ng-click="userlist.getUsers()" ng-show="!userlist.existResults">OBTENER usuarios</button>
-
+    <button ng-click="userlist.getUsers()" ng-show="!userlist.existResults" type="button" class="btn btn-primary">OBTENER usuarios</button>
     <br/>
-
-    <button ng-click="userlist.onAddClicked()">AÑADIR usuario</button>
-
+    <button ng-click="userlist.onAddClicked()" type="button" class="btn btn-primary">AÑADIR usuario</button>
     <br/>
-    Filtrar por Nombre:
-    <input type="text" ng-model="user.search.name" function-model="user">
+    
+	<div class="user-list_content-search">
+		<label>Filtrar por Nombre:</label>
+		<input type="text" ng-model="user.search.name" function-model="user">
+	</div>
     <hr/>
+	
+	<div class="user-list" ng-repeat ="user in userlist.userListResult | filter: user.search" >
+        {{user.name}}
+		{{user.username}}
+		{{user.email}}
+		{{user.phone}}
+        <div class="user-list_content-bottom">
+          <button  ng-click="userlist.onEditClicked(user)" type="button" class="btn btn-primary">EDITAR usuario</button>
+        </div>
+        <div class="user-list_content-bottom">
+          <button  ng-click="userlist.onDeleteClicked(user.id)" type="button" class="btn btn-primary">BORRAR usuario</button>
+        </div>
 
-    <table>
-      <thead ng-show="userlist.existResults">
-      <tr>
-        <th>Nombre</th>
-        <th>Username</th>
-        <th>email</th>
-        <th>Direcci&oacuten</th>
-      </tr>
-      </thead>
-      <tr ng-repeat="user in userlist.userListResult | filter: user.search">
+      </div>
 
-        <td>{{ user.name }}</td>
-        <td>{{ user.username }}</td>
-        <td>{{ user.email }}</td>
-        <td>
-          {{ user.address.street }}, {{ user.address.city }}<br/>
-          {{ user.address.zipcode }}
-        </td>
-        <td>
-          <button ng-click="userlist.onEditClicked(user)">EDITAR usuario</button>
-        </td>
-        <td>
-          <button ng-click="userlist.onDeleteClicked(user.id)">BORRAR usuario</button>
-        </td>
-      </tr>
-    </table>
   </div>
 </div>
