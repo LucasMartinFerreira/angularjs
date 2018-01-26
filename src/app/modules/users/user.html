@@ -1,0 +1,61 @@
+<div class="show-modal-edit-user">
+  <div class="show-modal-edit-user_all-content">
+
+    <div class="show-modal-edit-user_modal_header" ng-show="UserController.showAdd">
+    	 AÑADIR USUARIO
+    </div>
+
+   	<div class="show-modal-edit-user_modal_header" ng-show="UserController.showUpdate">
+    	 ACTUALIZAR USUARIO
+    </div>
+
+	<div class="show-modal-edit-user_content">
+      
+      <div class="show-modal-edit-user_title">
+        <label>Nombre:</label>
+        <input ng-model="UserController.user.name">
+      </div>
+
+      <div class="show-modal-edit-user_title">
+        <label>Nombre de usuario:</label>
+        <input ng-model="UserController.user.username">
+      </div>
+
+      <div class="show-modal-edit-user_title">
+        <label>Email:</label>
+        <input ng-model="UserController.user.email">
+      </div>
+
+      <div class="show-modal-edit-user_title">
+        <label>Phone:</label>
+        <input ng-model="UserController.user.phone">
+      </div>
+
+
+      <div class="show-modal-edit-user_content-buttons">
+        
+        <div style="color:red" ng-show="UserController.showRedMessage">
+            <label>Todos los campos han de estar informados.</label>
+        </div>
+
+        <div class="show-modal-edit-user_content-button-edit">
+          <button  ng-show="UserController.showAdd" ng-click="UserController.addUser()"  
+          		   type="button" class="btn btn-primary">Añadir</button>
+        </div>
+
+        <div class="show-modal-edit-user_content-button-edit">
+          <button  ng-show="UserController.showUpdate" ng-click="UserController.updateUser()"  
+          		   type="button" class="btn btn-primary">Actualizar</button>
+        </div>
+
+        <div class="show-modal-edit-user_content-button-close">
+          <button  ng-click="UserController.closeModal()" type="button" class="btn btn-primary">Cerrar</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

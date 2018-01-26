@@ -18,6 +18,16 @@ angular.module('angularjs')
       };
       return data;
     },
+	headerGetUsers: function () {
+      var data = {
+        url: URL.getListUsers,
+		headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
+		
 
     headerGetCommentsListPosts: function (idPost) {
       var data = {
@@ -28,7 +38,16 @@ angular.module('angularjs')
       };
       return data;
     },
-
+	
+	headerUser: function (userId) {
+      var data = {
+        url: URL.getListUsers + "/" + userId,
+		headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
 
     headerGetInfoPost: function (idPost) {
       var data = {
@@ -40,6 +59,17 @@ angular.module('angularjs')
       return data;
     },
 
+  headerAddUser: function(userJson){
+      var data = {
+        url : URL.addUser,
+        headers:{
+           "Content-type": "application/json; charset=UTF-8"
+         },
+         data:userJson
+		};
+      return data;
+    },
+		 
     headerSaveEditPost: function (objectPost) {
       var data = {
         url: URL.getListPosts +'/'+objectPost.id,
@@ -56,6 +86,17 @@ angular.module('angularjs')
       return data;
     },
 
+  headerUpdateUser: function(userJson, userId){
+      var data = {
+        url : URL.updateUser + userId,
+        headers:{
+           "Content-type": "application/json; charset=UTF-8"
+         },
+         data:userJson
+		 };
+      return data;
+    },
+	
     headerDeletePost: function (objectPost) {
       var data = {
         url: URL.getListPosts +'/'+objectPost.id,
@@ -65,5 +106,6 @@ angular.module('angularjs')
       };
       return data;
     }
+	
   }
 });

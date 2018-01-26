@@ -16,7 +16,40 @@ angular.module('angularjs')
         }
       });
     };
+	
+	var viewModalEditUser = function(data){
+      $uibModal.open({
+        templateUrl: 'app/modules/users/user.html',
+        controller: 'UserController',
+        controllerAs: 'UserController',
+        backdrop: 'static',
+        keyboard: false,
+        resolve: {
+          data: function () {
+            return data;
+          }
+        }
+      });
+    };
+	
+	var viewModalAddUser = function(){
+      $uibModal.open({
+        templateUrl: 'app/modules/users/user.html',
+        controller: 'UserController',
+        controllerAs: 'UserController',
+        backdrop: 'static',
+        keyboard: false,
+		resolve: {
+          data: function () {
+            return "";
+          }
+        }
+      });
+    };
+	
     return {
-      viewModalEditPost : viewModalEditPost
+      viewModalEditUser : viewModalEditUser,
+	  viewModalEditPost : viewModalEditPost,
+	  viewModalAddUser	: viewModalAddUser
     }
   });
