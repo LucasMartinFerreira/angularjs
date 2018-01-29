@@ -16,14 +16,14 @@
     var action = $stateParams.action;
 
 
-	vm.existResults = false;
+	vm.showRefreshUserListButton = true;
 		
 	vm.getUsers = function(){
 		
 		console.log('[userlistController] obteniendo usuarios');
 		
 		userlistService.obtainListUsers().then(function(response){
-		  vm.existResults = true;
+		  vm.showRefreshUserListButton = false;
 		  serviceGetterAndSetterUsers.set(response[0].data);
 		  vm.userListResult =  serviceGetterAndSetterUsers.get();
 		});
@@ -67,7 +67,8 @@
 				break;
 			}
 		}
-		if(index > 0){
+		if(index >= 0){
+			vm.showRefreshUserListButton = true;
 			temporalUserList.remove(index);
 		}
 		serviceGetterAndSetterUsers.set(temporalUserList);

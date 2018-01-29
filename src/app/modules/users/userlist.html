@@ -5,7 +5,7 @@
 <div class="container container-list-users">
 
   <div class="jumbotron text-center">
-    <button ng-click="userlist.getUsers()" ng-show="!userlist.existResults" type="button" class="btn btn-primary">OBTENER usuarios</button>
+    <button ng-click="userlist.getUsers()" ng-show="userlist.showRefreshUserListButton" type="button" class="btn btn-primary">REFRESCAR LISTADO DE usuarios</button>
     <br/>
     <button ng-click="userlist.onAddClicked()" type="button" class="btn btn-primary">AÑADIR usuario</button>
     <br/>
