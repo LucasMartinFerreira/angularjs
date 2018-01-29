@@ -51,6 +51,11 @@
 		userlistService.deleteUser(userId).then(function(response){
 			console.log("Userlist: usuario borrado del servicio");
 			vm.deleteUserFromTemporalData(userId);
+		}).catch(function(err){
+			console.log(err);
+
+			vm.deleteUserFromTemporalData(userId);
+
 		});
 	}
 	

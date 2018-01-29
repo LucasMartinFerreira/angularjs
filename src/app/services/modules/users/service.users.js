@@ -119,7 +119,8 @@
 
       var valid = true;
 
-      if(undefined===data.name || undefined===data.username || undefined==data.email || undefined===data.phone){
+      if(undefined===data.name || undefined===data.username || undefined===data.email || undefined===data.phone ||
+        "" ===data.name || ""===data.username || ""===data.email || ""===data.phone){
         valid = false
       }
 
