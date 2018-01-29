@@ -6,7 +6,7 @@
     .controller('PostsController', PostsController);
 
   /** @ngInject */
-  function PostsController(postService,ModalsService, $state, $stateParams, serviceGetterAndSetterPost,headersService,HttpSrv,toastr) {
+  function PostsController(postService,ModalsService, $filter, $state, $stateParams, serviceGetterAndSetterPost,headersService,HttpSrv,toastr) {
     var vm = this;
     vm.newListPost =[];
 
@@ -19,14 +19,11 @@
      * Función para crear un array auxiliar con los elementos que se editan
      */
 
-      console.log('Entramos')
-
     var createArrayForEditListPost = function(){
       var listEdit = serviceGetterAndSetterPost.getListPost()
       if(listEdit === null || listEdit === "" || angular.isUndefined(listEdit)) {
         postService.getAllPosts().then(function (response) {
           vm.listPosts = response[0].data;
-
           angular.forEach(vm.listPosts, function (post) {
             if (post.id === objectPost.id) {
               vm.newListPost.push(objectPost)
@@ -54,13 +51,11 @@
 
     var deleteArrayForListPost = function(){
       var listEdit = serviceGetterAndSetterPost.getListPost();
-
       if(listEdit === null || listEdit === "" || angular.isUndefined(listEdit)) {
         postService.getAllPosts().then(function (response) {
           vm.listPosts = response[0].data;
           angular.forEach(vm.listPosts, function (post) {
-            const index = vm.listPosts.indexOf(post);
-            if (index !== 0) {
+            if (post.id !== objectPost.id) {
               vm.newListPost.push(post)
             }
           });
@@ -69,8 +64,7 @@
         });
       }else{
         angular.forEach(listEdit, function (post) {
-          const index = listEdit.indexOf(post);
-          if (index !== 0) {
+          if (post.id !== objectPost.id) {
             vm.newListPost.push(post)
           }
         });
