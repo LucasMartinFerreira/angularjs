@@ -122,8 +122,10 @@
           vm.closeModal();
 
         }).catch(function(err) {
-            console.log('Error buscando el usuario por id: ',response[0].err);
+            console.log('Error buscando el usuario por id: ',err);
 
+			$state.transitionTo($state.current, {objectUser: vm.user, action: 'edit'}, { reload: true})
+			
             vm.closeModal();
 
         });      
