@@ -11,41 +11,33 @@
 
 	<div class="show-modal-edit-user_content">
       
+    <form name="formAdd" ng-submit="UserController.addUser()" ng-show="UserController.showAdd">
+
       <div class="show-modal-edit-user_title">
         <label>Nombre:</label>
-        <input ng-model="UserController.user.name">
+        <input ng-model="UserController.user.name" required autofocus>
       </div>
 
       <div class="show-modal-edit-user_title">
         <label>Nombre de usuario:</label>
-        <input ng-model="UserController.user.username">
+        <input ng-model="UserController.user.username" required>
       </div>
 
       <div class="show-modal-edit-user_title">
         <label>Email:</label>
-        <input ng-model="UserController.user.email">
+        <input ng-model="UserController.user.email" required type="email">
       </div>
 
       <div class="show-modal-edit-user_title">
         <label>Phone:</label>
-        <input ng-model="UserController.user.phone">
-      </div>
-
-
-      <div class="show-modal_error" ng-show="UserController.showRedMessage">
-        Todos los campos han de estar informados.          
+        <input ng-model="UserController.user.phone" required>
       </div>
 
       <div class="show-modal-edit-user_content-buttons">
         
         <div class="show-modal-edit-user_content-button-edit">
-          <button  ng-show="UserController.showAdd" ng-click="UserController.addUser()"  
-          		   type="button" class="btn btn-primary">Añadir</button>
-        </div>
-
-        <div class="show-modal-edit-user_content-button-edit">
-          <button  ng-show="UserController.showUpdate" ng-click="UserController.updateUser()"  
-          		   type="button" class="btn btn-primary">Actualizar</button>
+          <button  ng-show="UserController.showAdd"   
+          		   type="submit" class="btn btn-primary">Añadir</button>
         </div>
 
         <div class="show-modal-edit-user_content-button-close">
@@ -53,6 +45,45 @@
         </div>
 
       </div>
+
+    </form>
+
+    <form name="formUpdate" ng-submit="UserController.updateUser()" ng-show="UserController.showUpdate">
+
+        <div class="show-modal-edit-user_title">
+          <label>Nombre:</label>
+          <input ng-model="UserController.user.name" required autofocus>
+        </div>
+  
+        <div class="show-modal-edit-user_title">
+          <label>Nombre de usuario:</label>
+          <input ng-model="UserController.user.username" required>
+        </div>
+  
+        <div class="show-modal-edit-user_title">
+          <label>Email:</label>
+          <input ng-model="UserController.user.email" required type="email">
+        </div>
+  
+        <div class="show-modal-edit-user_title">
+          <label>Phone:</label>
+          <input ng-model="UserController.user.phone" required>
+        </div>
+  
+        <div class="show-modal-edit-user_content-buttons">
+
+          <div class="show-modal-edit-user_content-button-edit">
+            <button  ng-show="UserController.showUpdate"  
+                   type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+  
+          <div class="show-modal-edit-user_content-button-close">
+            <button  ng-click="UserController.closeModal()" type="button" class="btn btn-primary">Cerrar</button>
+          </div>
+  
+        </div>
+  
+      </form>
 
     </div>
 

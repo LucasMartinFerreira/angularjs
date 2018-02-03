@@ -18,9 +18,6 @@
 
     var vm = this;
 
-
-  	//controla que se muestre un texto en rojo si alguno de los campos no ha sido informado.
-    vm.showRedMessage=false;
     vm.showAdd = false;
     vm.showUpdate = false;
 
@@ -53,40 +50,27 @@
        
    		console.log('[UserController] Inicio funcion addUser ');
 
-   		if(usersService.validateUserFields(vm.user)){
+      //realizamos la llamada al servicio.
+      usersService.addUser(vm.user).then(function(response){
+        
+        //respondemos con el resultado de la peticion y se lo enviamos al listado.
+        var objUser =  response[0].data;
+        console.log('Respuesta creación de usuario: ', objUser);
 
-   			console.log('Todos los campos han sido informados.');
+        //enviamos el resultado al listado.
+        $state.transitionTo($state.current, {objectUser: objUser, action: 'add'}, { reload: true})
+        toastr.success('Usuario creado correctamente');
 
-   			//ocultamos el texto de error
-   			vm.showRedMessage=false;
+        //cerramos el modal.
+        vm.closeModal();
+        
+      }).catch(function(err) {
 
-   			//realizamos la llamada al servicio.
-        usersService.addUser(vm.user).then(function(response){
-         
-          //respondemos con el resultado de la peticion y se lo enviamos al listado.
-          var objUser =  response[0].data;
-          console.log('Respuesta creación de usuario: ', objUser);
+          console.log('Error buscando el usuario por id: ',response[0].err);
 
-          //enviamos el resultado al listado.
-          $state.transitionTo($state.current, {objectUser: objUser, action: 'add'}, { reload: true})
-          toastr.success('Usuario creado correctamente');
-
-          //cerramos el modal.
           vm.closeModal();
-          
-        }).catch(function(err) {
 
-            console.log('Error buscando el usuario por id: ',response[0].err);
-
-            vm.closeModal();
-
-        });     
-        
-        
-   		}else{
-   			console.log('Alguno o ninguno de los campos ha sido informado.');
-   			vm.showRedMessage=true;
-   		}
+      });   
 
    		console.log('[UserController] Fin funcion addUser ');
 
@@ -99,13 +83,6 @@
     vm.updateUser = function(){
 
       console.log('[UserController] Inicio funcion updateUser ');
-
-      if(usersService.validateUserFields(vm.user)){
-
-        console.log('Todos los campos han sido informados.');
-
-        //ocultamos el texto de error
-        vm.showRedMessage=false;
 
         //realizamos la llamada al servicio.
         usersService.updateUser(vm.user).then(function(response){
@@ -124,18 +101,12 @@
         }).catch(function(err) {
             console.log('Error buscando el usuario por id: ',err);
 
-			$state.transitionTo($state.current, {objectUser: vm.user, action: 'edit'}, { reload: true})
+			      $state.transitionTo($state.current, {objectUser: vm.user, action: 'edit'}, { reload: true})
 			
             vm.closeModal();
 
         });      
         
-        
-      }else{
-        console.log('Alguno o ninguno de los campos ha sido informado.');
-        vm.showRedMessage=true;
-      }
-
       console.log('[UserController] Fin funcion updateUser ');
     };
 
