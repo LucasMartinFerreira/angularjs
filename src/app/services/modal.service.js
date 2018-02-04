@@ -17,39 +17,16 @@ angular.module('angularjs')
       });
     };
 	
-	var viewModalEditUser = function(data){
+	var viewModalUser = function(){
       $uibModal.open({
-        templateUrl: 'app/modules/users/user.html',
-        controller: 'UserController',
-        controllerAs: 'UserController',
+        template: '<user-info></user-info>',
         backdrop: 'static',
-        keyboard: false,
-        resolve: {
-          data: function () {
-            return data;
-          }
-        }
+        keyboard: false
       });
     };
-	
-	var viewModalAddUser = function(){
-      $uibModal.open({
-        templateUrl: 'app/modules/users/user.html',
-        controller: 'UserController',
-        controllerAs: 'UserController',
-        backdrop: 'static',
-        keyboard: false,
-		resolve: {
-          data: function () {
-            return "";
-          }
-        }
-      });
-    };
-	
+		
     return {
-      viewModalEditUser : viewModalEditUser,
-	  viewModalEditPost : viewModalEditPost,
-	  viewModalAddUser	: viewModalAddUser
+      viewModalUser : viewModalUser,
+	    viewModalEditPost : viewModalEditPost
     }
   });

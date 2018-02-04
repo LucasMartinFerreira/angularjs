@@ -29,10 +29,9 @@
               
               var copiedUser = $.extend({}, user);
               console.log('Userlist: Editamos el User con Id:', copiedUser.id)
-              var data ={
-              user : copiedUser
-              }
-              ModalsService.viewModalEditUser(copiedUser)
+              
+              serviceGetterAndSetterUsers.setUserToEdit(copiedUser);
+              ModalsService.viewModalUser();
               
           }
           
