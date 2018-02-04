@@ -8,7 +8,7 @@
 
 	function userlist() {
 		var component = {
-			templateUrl: '/app/modules/users/userlist.html',
+			templateUrl: '/app/modules/users/userlistcomponent.html',
 			controller: UserlistController,
 			bindings: {
 				filter: '<'
@@ -41,6 +41,11 @@
 		  vm.userListResult =  serviceGetterAndSetterUsers.get();
 		});
 		
+	}
+
+	vm.onAddClicked = function(){
+		console.log('Userlist: Añadir nuevo User')
+		ModalsService.viewModalAddUser();
 	}
 			
 	/**

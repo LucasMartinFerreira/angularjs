@@ -24,11 +24,7 @@
           
           var vm = this;
       
-          vm.onAddClicked = function(){
-              console.log('Userlist: Añadir nuevo User')
-              ModalsService.viewModalAddUser();
-          }
-          
+        
           vm.onEditClicked = function(user){
               
               var copiedUser = $.extend({}, user);
