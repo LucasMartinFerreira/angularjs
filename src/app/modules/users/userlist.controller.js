@@ -3,8 +3,22 @@
 
   angular
     .module('angularjs')
-    .controller('UserlistController', userlistController);
+		.controller('UserlistController', userlistController)
+		.component('userRowComponent', userRow());
 
+		function userRow() {
+			var component = {
+				templateUrl: '/app/modules/users/userrow.html',
+				controller: UserRowController,
+				bindings: {
+					user: '<',
+					filter: '<'
+				},
+				controllerAs: 'rowcontroller'
+			};
+			return component;
+		}
+		
   /** @ngInject */
   function userlistController($location, userlistService, serviceGetterAndSetterUsers, ModalsService,$stateParams) {
     var vm = this;
@@ -29,36 +43,7 @@
 		});
 		
 	}
-		
-	vm.onAddClicked = function(){
-		console.log('Userlist: Añadir nuevo User')
-		ModalsService.viewModalAddUser();
-	}
-	
-	vm.onEditClicked = function(user){
-		
-		var copiedUser = $.extend({}, user);
-	  console.log('Userlist: Editamos el User con Id:', copiedUser.id)
-	  var data ={
-		user : copiedUser
-	  }
-	  ModalsService.viewModalEditUser(copiedUser)
-		
-	}
-	
-	vm.onDeleteClicked = function(userId){
-		console.log('Userlist: Borramos el User con Id:', userId)
-		userlistService.deleteUser(userId).then(function(response){
-			console.log("Userlist: usuario borrado del servicio");
-			vm.deleteUserFromTemporalData(userId);
-		}).catch(function(err){
-			console.log(err);
-
-			vm.deleteUserFromTemporalData(userId);
-
-		});
-	}
-	
+			
 	/**
 	* al usar un servicio dummy, no se borran realmente los datos, para que se refleje en la pantalla los eliminamos del listado local
 	*/
@@ -120,7 +105,44 @@
 	  this.length = from < 0 ? this.length + from : from;
 	  return this.push.apply(this, rest);
 	};
-  }
+	}
+	
+	
+	function UserRowController($location, userlistService, serviceGetterAndSetterUsers, ModalsService,$stateParams) {
+		console.log("componente user")
+		
+		var vm = this;
+	
+		vm.onAddClicked = function(){
+			console.log('Userlist: Añadir nuevo User')
+			ModalsService.viewModalAddUser();
+		}
+		
+		vm.onEditClicked = function(user){
+			
+			var copiedUser = $.extend({}, user);
+			console.log('Userlist: Editamos el User con Id:', copiedUser.id)
+			var data ={
+			user : copiedUser
+			}
+			ModalsService.viewModalEditUser(copiedUser)
+			
+		}
+		
+		vm.onDeleteClicked = function(userId){
+			console.log('Userlist: Borramos el User con Id:', userId)
+			userlistService.deleteUser(userId).then(function(response){
+				console.log("Userlist: usuario borrado del servicio");
+				vm.deleteUserFromTemporalData(userId);
+			}).catch(function(err){
+				console.log(err);
+	
+				vm.deleteUserFromTemporalData(userId);
+	
+			});
+		}
+		
+	}
   
 })();
 

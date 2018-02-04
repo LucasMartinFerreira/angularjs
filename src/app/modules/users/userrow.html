@@ -1,0 +1,12 @@
+<div class="user-data">
+    <div class="name"><h4>{{rowcontroller.user.name}}</h4></div>
+    <div class="username">{{rowcontroller.user.username}}</div>
+    <div class="email">{{rowcontroller.user.email}}</div>
+    <div class="phone">{{rowcontroller.user.phone}}</div>
+</div><br>
+<div class="user-list_content-bottom">
+  <button  ng-click="rowcontroller.onEditClicked(rowcontroller.user)" type="button" class="btn btn-primary">EDITAR usuario</button>
+</div>
+<div class="user-list_content-bottom">
+  <button  ng-click="rowcontroller.onDeleteClicked(rowcontroller.user.id)" type="button" class="btn btn-primary">BORRAR usuario</button>
+</div>
