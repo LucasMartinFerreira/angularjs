@@ -2,12 +2,24 @@
   'use strict';
 
   angular
-    .module('angularjs')
-		.controller('UserlistController', userlistController);
+	.module('angularjs')
+	.controller('UserlistController', UserlistController)
+	.component('userlistcomponent', userlist());
 
+	function userlist() {
+		var component = {
+			templateUrl: '/app/modules/users/userlist.html',
+			controller: UserlistController,
+			bindings: {
+				filter: '<'
+			},
+			controllerAs: 'userlist'
+		};
+		return component;
+	}
 		
-  /** @ngInject */
-  function userlistController($location, userlistService, serviceGetterAndSetterUsers, ModalsService,$stateParams) {
+
+  function UserlistController($location, userlistService, serviceGetterAndSetterUsers, ModalsService,$stateParams) {
     var vm = this;
 	
 	var temporalUserList;
@@ -31,27 +43,6 @@
 		
 	}
 			
-	/**
-	* al usar un servicio dummy, no se borran realmente los datos, para que se refleje en la pantalla los eliminamos del listado local
-	*/
-	vm.deleteUserFromTemporalData = function(userId){
-		temporalUserList = serviceGetterAndSetterUsers.get();
-		var index = -1;
-		for(var i=0; i<temporalUserList.length; i++){
-			var user = temporalUserList[i];
-			if(user.id == userId){
-				index = i;
-				break;
-			}
-		}
-		if(index >= 0){
-			vm.showRefreshUserListButton = true;
-			temporalUserList.remove(index);
-		}
-		serviceGetterAndSetterUsers.set(temporalUserList);
-		vm.userListResult =  temporalUserList;
-	}
-	
 	/**
 	* al usar un servicio dummy, no se borran realmente los datos, para que se refleje en la pantalla los actualizamos en el listado local
 	*/
