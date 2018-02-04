@@ -3,9 +3,9 @@
 
   angular
     .module('angularjs')
-    .component('filter', filter());
+    .component('filter', filterinit());
 
-		function filter() {
+		function filterinit() {
 			var component = {
 			  templateUrl: 'app/components/filter/filter.html',
 			  controller: FilterController,
@@ -19,6 +19,7 @@
 		  }
 
 
-  function FilterController() { }
+  function FilterController() {
+	}
 })(window.angular);
 
