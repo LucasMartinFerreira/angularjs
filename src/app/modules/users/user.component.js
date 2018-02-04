@@ -20,7 +20,7 @@
         'serviceGetterAndSetterUsers',
         'usersService',
         '$state',
-        'toastr',
+        'toastr'
 
     ];
 
@@ -61,7 +61,8 @@
 
         //Funcion para cerrar el modal.
         vm.closeModal = function () {
-            $uibModalInstance.dismiss();
+            //$uibModalInstance.dismiss();
+            
         }
 
         /**
