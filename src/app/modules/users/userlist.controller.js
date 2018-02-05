@@ -44,8 +44,8 @@
 	}
 
 	vm.onAddClicked = function(){
-		console.log('Userlist: Añadir nuevo User')
-		ModalsService.viewModalUser();
+		console.log('Userlist: Añadir nuevo User');
+		ModalsService.viewModalCreateUser();
 	}
 			
 	/**

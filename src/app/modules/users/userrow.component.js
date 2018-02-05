@@ -31,7 +31,7 @@
               console.log('Userlist: Editamos el User con Id:', copiedUser.id)
               
               serviceGetterAndSetterUsers.setUserToEdit(copiedUser);
-              ModalsService.viewModalUser();
+              ModalsService.viewModalUpdateUser();
               
           }
           

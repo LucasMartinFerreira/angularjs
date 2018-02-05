@@ -17,17 +17,32 @@ angular.module('angularjs')
       });
     };
 
-	var viewModalUser = function($scope){
+
+    //Modal creación de usuario.
+    var viewModalCreateUser = function(){
 
       $uibModal.open({
-        template: '<user-info $dismiss="$dismiss(reason)"></user-info>',
+        template: '<create-user $dismiss="$dismiss(reason)"></create-user>',
+        component:'createUser',
+        backdrop: 'static',
+        keyboard: false
+      });
+    };
+
+    //Modal actualización de usuario.
+    var viewModalUpdateUser = function(){
+
+      $uibModal.open({
+        template: '<update-user $dismiss="$dismiss(reason)"></update-user>',
+        component:'updateUser',
         backdrop: 'static',
         keyboard: false
       });
     };
 
     return {
-      viewModalUser : viewModalUser,
-	    viewModalEditPost : viewModalEditPost
+      viewModalEditPost : viewModalEditPost,
+      viewModalCreateUser:viewModalCreateUser,
+      viewModalUpdateUser:viewModalUpdateUser
     }
   });
