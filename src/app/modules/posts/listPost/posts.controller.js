@@ -10,6 +10,16 @@
     var vm = this;
     vm.newListPost =[];
 
+    /** Objecto de elementos por los cuales se va a realizar al búsqueda **/
+    vm.fields = {
+      title: ''
+    };
+
+
+    vm.search = function(filter){
+        vm.filter = filter;
+    };
+
     var objectPost = $stateParams.objectPost;
 
     /** Esta variable nos dice si venimos de editar o eleminar **/

@@ -4,12 +4,18 @@
 </div>
   <div class="container container-post-list">
     <div class="jumbotron text-center">
-      <div class="post-list_content-search">
-        <label>Buscar:</label>
-        <input type="text" ng-model="post.search.title" function-model="post" ng-change="users.change()">
-        <search class="searchIcon" ng-model="post.search.title" function-model="post" page-controller="'posts'"></search>
+
+      <div>
+
+        <comment-post></comment-post>
+
       </div>
-      <div class="post-list" ng-repeat ="post in posts.listPosts | filter: post.search" >
+
+
+      <div class="post-list_content-search">
+        <search class="searchIcon"  filter="posts.fields" on-search="posts.search(filter)" page-controller="posts"></search>
+      </div>
+      <div class="post-list" ng-repeat ="post in posts.listPosts | filter: posts.fields" >
         <h3>{{post.title}}</h3>
         <div class="post-list_content-bottom">
           <button  ng-click="posts.viewComments(post.id)" type="button" class="btn btn-primary">COMENTARIOS</button>
@@ -20,9 +26,7 @@
         <div class="post-list_content-bottom">
           <button  ng-click="posts.deletePost(post)" type="button" class="btn btn-primary">BORRAR</button>
         </div>
-
       </div>
-
     </div>
 </div>
 

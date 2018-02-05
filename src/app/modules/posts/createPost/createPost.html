@@ -1,0 +1,17 @@
+<div ng-class="createPost.showInputAddPost' ? 'create-post-container' : 'create-post-container2'" >
+  <button ng-show="createPost.showInputCreate" ng-click="createPost.showForm()" type="button" class="btn btn-primary">Crear Nuevo Post</button>
+  <div ng-show="createPost.showInputAddPost" class="create-post-container_form">
+    <div class="create-post-container_inputs">
+      <label>Título:</label>
+      <input type="text">
+    </div>
+    <div class="create-post-container_inputs">
+      <label>Cuerpo:</label>
+      <input type="text">
+    </div>
+
+    <div class="create-post-container_inputs">
+      <button  ng-click="createPost.showForm()" type="button" class="btn btn-primary">Añadir</button>
+    </div>
+  </div>
+</div>
