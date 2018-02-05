@@ -16,15 +16,16 @@ angular.module('angularjs')
         }
       });
     };
-	
-	var viewModalUser = function(){
+
+	var viewModalUser = function($scope){
+
       $uibModal.open({
-        template: '<user-info></user-info>',
+        template: '<user-info $dismiss="$dismiss(reason)"></user-info>',
         backdrop: 'static',
         keyboard: false
       });
     };
-		
+
     return {
       viewModalUser : viewModalUser,
 	    viewModalEditPost : viewModalEditPost

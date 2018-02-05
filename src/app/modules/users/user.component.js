@@ -10,7 +10,10 @@
         var component = {
             templateUrl: '/app/modules/users/user.html',
             controller: UserController,
-            controllerAs: 'userController'
+            controllerAs: 'userController',
+            bindings: {
+              $dismiss: '&'
+            }
         };
 
         return component;
@@ -26,6 +29,7 @@
 
 
     function UserController(serviceGetterAndSetterUsers,usersService,$state,toastr) {
+
 
         console.log('[UserController] Inicio controlador:  UserController');
 
@@ -61,9 +65,10 @@
 
         //Funcion para cerrar el modal.
         vm.closeModal = function () {
-            //$uibModalInstance.dismiss();
-            
-        }
+          vm.$dismiss({
+            reason: 'close'
+          });
+        };
 
         /**
         * Función que es llamada cuando el usuario pulsa el botón de "añadir"
@@ -108,7 +113,7 @@
             //realizamos la llamada al servicio.
             usersService.updateUser(vm.user).then(function (response) {
 
-                //respuesta de la api 
+                //respuesta de la api
                 var objUser = response[0].data;
 
                 console.log('Respuesta actualización', objUser);

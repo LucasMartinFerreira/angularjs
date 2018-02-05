@@ -9,9 +9,9 @@
     	 ACTUALIZAR USUARIO
     </div>
 
-    
+
 	<div class="show-modal-edit-user_content">
-      
+
     <form name="formAdd" ng-submit="userController.addUser()" ng-show="userController.showAdd">
 
       <div class="show-modal-edit-user_title">
@@ -35,9 +35,9 @@
       </div>
 
       <div class="show-modal-edit-user_content-buttons">
-        
+
         <div class="show-modal-edit-user_content-button-edit">
-          <button  ng-show="userController.showAdd"   
+          <button  ng-show="userController.showAdd"
           		   type="submit" class="btn btn-primary">Añadir</button>
         </div>
 
@@ -55,35 +55,35 @@
           <label>Nombre:</label>
           <input ng-model="userController.user.name" required autofocus>
         </div>
-  
+
         <div class="show-modal-edit-user_title">
           <label>Nombre de usuario:</label>
           <input ng-model="userController.user.username" required>
         </div>
-  
+
         <div class="show-modal-edit-user_title">
           <label>Email:</label>
           <input ng-model="userController.user.email" required type="email">
         </div>
-  
+
         <div class="show-modal-edit-user_title">
           <label>Phone:</label>
           <input ng-model="userController.user.phone" required>
         </div>
-  
+
         <div class="show-modal-edit-user_content-buttons">
 
           <div class="show-modal-edit-user_content-button-edit">
-            <button  ng-show="userController.showUpdate"  
+            <button  ng-show="userController.showUpdate"
                    type="submit" class="btn btn-primary">Actualizar</button>
           </div>
-  
+
           <div class="show-modal-edit-user_content-button-close">
             <button  ng-click="userController.closeModal()" type="button" class="btn btn-primary">Cerrar</button>
           </div>
-  
+
         </div>
-  
+
       </form>
 
     </div>
