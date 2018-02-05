@@ -15,10 +15,13 @@
       title: ''
     };
 
-
     vm.search = function(filter){
         vm.filter = filter;
     };
+
+    vm.addNewPost = function(post){
+      console.log('Añadimos nuevo post', post)
+    }
 
     var objectPost = $stateParams.objectPost;
 
@@ -84,6 +87,23 @@
     };
 
 
+    var addNewPost = function(newPost){
+
+      vm.newListPost.push(newPost);
+
+      postService.getAllPosts().then(function (response) {
+        vm.listPosts = response[0].data;
+        angular.forEach(vm.listPosts, function (post) {
+            vm.newListPost.push(post)
+        });
+
+
+
+        vm.listPosts = vm.newListPost;
+      });
+    }
+
+
     /**
      * Obtenemos el listado de posts
      */
@@ -94,7 +114,9 @@
       });
     }else{
       console.log('Action', action)
-      if(action ==='edit'){
+      if(action === 'newPost'){
+        addNewPost(objectPost);
+      }else if(action ==='edit'){
         createArrayForEditListPost();
       }else{
         deleteArrayForListPost();
@@ -105,11 +127,18 @@
      * Editamos el Post
      * @param idPost
      */
-    vm.editPost = function(idPost){
+    vm.editPost = function(idPost,post){
+
       var data ={
         id : idPost
       }
       ModalsService.viewModalEditPost(data, 'editPostController')
+    };
+
+
+
+    vm.editPostComponent = function(post){
+      vm.editDataPost= post;
     };
 
     /**

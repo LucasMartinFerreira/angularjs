@@ -4,24 +4,23 @@
 </div>
   <div class="container container-post-list">
     <div class="jumbotron text-center">
-
       <div>
-
-        <comment-post></comment-post>
-
+        <create-post edit="posts.editDataPost" on-view-change="posts.editDataPost"></create-post>
       </div>
-
-
       <div class="post-list_content-search">
         <search class="searchIcon"  filter="posts.fields" on-search="posts.search(filter)" page-controller="posts"></search>
       </div>
       <div class="post-list" ng-repeat ="post in posts.listPosts | filter: posts.fields" >
+
         <h3>{{post.title}}</h3>
         <div class="post-list_content-bottom">
           <button  ng-click="posts.viewComments(post.id)" type="button" class="btn btn-primary">COMENTARIOS</button>
         </div>
         <div class="post-list_content-bottom">
-          <button  ng-click="posts.editPost(post.id)" type="button" class="btn btn-primary">EDITAR</button>
+          <button  ng-click="posts.editPostComponent(post)" type="button" class="btn btn-primary">EDITAR Componente</button>
+        </div>
+        <div class="post-list_content-bottom">
+          <button  ng-click="posts.editPost(post.id, post)" type="button" class="btn btn-primary">EDITAR Modal</button>
         </div>
         <div class="post-list_content-bottom">
           <button  ng-click="posts.deletePost(post)" type="button" class="btn btn-primary">BORRAR</button>
