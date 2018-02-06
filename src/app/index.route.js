@@ -16,7 +16,11 @@
         },
         templateUrl: 'app/modules/posts/listPost/posts.html',
         controller: 'PostsController',
-        controllerAs: 'posts'
+        controllerAs: 'posts',
+        bindings :{
+          edit : '<',
+          onViewChange: '&'
+        }
       });
 
 

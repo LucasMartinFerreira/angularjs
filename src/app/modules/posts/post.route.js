@@ -16,7 +16,7 @@
         templateUrl: 'app/modules/posts/commentPost/commentPost.html',
         controller: 'commentPostController',
         controllerAs: 'commentPost'
-      });
+      })
 
     $urlRouterProvider.otherwise('/');
   }

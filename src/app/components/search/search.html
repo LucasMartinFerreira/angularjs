@@ -1,2 +1,6 @@
-<div class="searchWidget">
+<div ng-repeat="(key, value) in pageController.fields">
+  <div class="searchWidget">
+    <label>Buscar:</label>
+    <input type="text" ng-model="pageController.fields[key]" ng-change="pageController.search({filter: pageController.filter})">
+  </div>
 </div>
