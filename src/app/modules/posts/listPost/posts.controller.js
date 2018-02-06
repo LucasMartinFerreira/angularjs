@@ -19,9 +19,6 @@
         vm.filter = filter;
     };
 
-    vm.addNewPost = function(post){
-      console.log('Añadimos nuevo post', post)
-    }
 
     var objectPost = $stateParams.objectPost;
 
