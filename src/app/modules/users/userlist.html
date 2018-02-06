@@ -10,10 +10,11 @@
     <button ng-click="userlist.onAddClicked()" type="button" class="btn btn-primary">AÑADIR usuario</button>
     <br/>
     
-    <filter filter="userlist.userListResult"></filter>
+    <search class="searchIcon"  filter="userlist.fields" on-search="userlist.search(filter)" page-controller="userlist"></search>
+
     <hr/>
 	
-	<div class="user-list" ng-repeat ="user in userlist.userListResult | filter: userlist.filter" >
+	<div class="user-list" ng-repeat ="user in userlist.userListResult | filter: userlist.fields" >
       <user-row-component user="user"></userRowComponent>
       </div>
 

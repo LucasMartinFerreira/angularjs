@@ -10,9 +10,6 @@
 		var component = {
 			templateUrl: '/app/modules/users/userlistcomponent.html',
 			controller: UserlistController,
-			bindings: {
-				filter: '<'
-			},
 			controllerAs: 'userlist'
 		};
 		return component;
@@ -30,6 +27,17 @@
 
 
 	vm.showRefreshUserListButton = true;
+
+	/** Objecto de elementos por los cuales se va a realizar al búsqueda **/
+    vm.fields = {
+		name: ''
+	};
+
+	vm.search = function(filter){
+		console.log("FILTRO ", filter)
+		vm.filter = filter;
+	};
+  
 		
 	vm.getUsers = function(){
 		
