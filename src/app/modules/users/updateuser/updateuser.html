@@ -1,0 +1,50 @@
+<div class="show-modal-edit-user">
+    <div class="show-modal-edit-user_all-content">
+
+        <div class="show-modal-edit-user_modal_header">
+            ACTUALIZAR USUARIO
+        </div>
+
+        <div class="show-modal-edit-user_content">
+
+
+            <form name="formUpdate" ng-submit="updateUserController.updateUser()">
+
+                <div class="show-modal-edit-user_title">
+                    <label>Nombre:</label>
+                    <input ng-model="updateUserController.user.name" required autofocus>
+                </div>
+
+                <div class="show-modal-edit-user_title">
+                    <label>Nombre de usuario:</label>
+                    <input ng-model="updateUserController.user.username" required>
+                </div>
+
+                <div class="show-modal-edit-user_title">
+                    <label>Email:</label>
+                    <input ng-model="updateUserController.user.email" required type="email">
+                </div>
+
+                <div class="show-modal-edit-user_title">
+                    <label>Phone:</label>
+                    <input ng-model="updateUserController.user.phone" required>
+                </div>
+
+                <div class="show-modal-edit-user_content-buttons">
+
+                    <div class="show-modal-edit-user_content-button-edit">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+
+                    <div class="show-modal-edit-user_content-button-close">
+                        <button ng-click="updateUserController.closeModal()" type="button" class="btn btn-primary">Cerrar</button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

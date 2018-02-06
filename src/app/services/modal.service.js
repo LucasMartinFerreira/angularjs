@@ -16,40 +16,33 @@ angular.module('angularjs')
         }
       });
     };
-	
-	var viewModalEditUser = function(data){
+
+
+    //Modal creación de usuario.
+    var viewModalCreateUser = function(){
+
       $uibModal.open({
-        templateUrl: 'app/modules/users/user.html',
-        controller: 'UserController',
-        controllerAs: 'UserController',
+        template: '<create-user $dismiss="$dismiss(reason)"></create-user>',
+        component:'createUser',
         backdrop: 'static',
-        keyboard: false,
-        resolve: {
-          data: function () {
-            return data;
-          }
-        }
+        keyboard: false
       });
     };
-	
-	var viewModalAddUser = function(){
+
+    //Modal actualización de usuario.
+    var viewModalUpdateUser = function(){
+
       $uibModal.open({
-        templateUrl: 'app/modules/users/user.html',
-        controller: 'UserController',
-        controllerAs: 'UserController',
+        template: '<update-user $dismiss="$dismiss(reason)"></update-user>',
+        component:'updateUser',
         backdrop: 'static',
-        keyboard: false,
-		resolve: {
-          data: function () {
-            return "";
-          }
-        }
+        keyboard: false
       });
     };
-	
+
     return {
-      viewModalEditUser : viewModalEditUser,
-	  viewModalEditPost : viewModalEditPost,
-	  viewModalAddUser	: viewModalAddUser
+      viewModalEditPost : viewModalEditPost,
+      viewModalCreateUser:viewModalCreateUser,
+      viewModalUpdateUser:viewModalUpdateUser
     }
   });
