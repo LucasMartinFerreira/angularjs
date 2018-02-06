@@ -24,7 +24,6 @@
   .user-list{
     display: grid;
     width: 100%;
-    grid-template-columns: 61% repeat(3, 15%);
     align-items: center;
     .post-list_content-bottom{
 
@@ -33,7 +32,7 @@
 	.user-data{
 		display: grid;
 		
-		grid-template-areas: "name username email phone"
+		grid-template-areas: "name username email phone buttonEdit buttonDelete"
 	}
 	
 	.name{
@@ -47,6 +46,12 @@
 	}
 	.phone{
 		grid-area: phone;
+  }
+  .buttonEdit{
+		grid-area: buttonEdit;
+  }
+  .buttonDelete{
+		grid-area: buttonDelete;
 	}
 
   }
