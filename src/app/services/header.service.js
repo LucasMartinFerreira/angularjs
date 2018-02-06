@@ -27,7 +27,7 @@ angular.module('angularjs')
       };
       return data;
     },
-		
+
 
     headerGetCommentsListPosts: function (idPost) {
       var data = {
@@ -38,7 +38,7 @@ angular.module('angularjs')
       };
       return data;
     },
-	
+
 	headerUser: function (userId) {
       var data = {
         url: URL.getListUsers + "/" + userId,
@@ -69,7 +69,22 @@ angular.module('angularjs')
 		};
       return data;
     },
-		 
+
+    headerCreatePost: function (objectPost) {
+      var data = {
+        url: URL.getListPosts,
+        data :JSON.stringify({
+          title: objectPost.title,
+          body: objectPost.body,
+          userId: objectPost.userId
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      };
+      return data;
+    },
+
     headerSaveEditPost: function (objectPost) {
       var data = {
         url: URL.getListPosts +'/'+objectPost.id,
@@ -96,7 +111,7 @@ angular.module('angularjs')
 		 };
       return data;
     },
-	
+
     headerDeletePost: function (objectPost) {
       var data = {
         url: URL.getListPosts +'/'+objectPost.id,
@@ -106,6 +121,6 @@ angular.module('angularjs')
       };
       return data;
     }
-	
+
   }
 });

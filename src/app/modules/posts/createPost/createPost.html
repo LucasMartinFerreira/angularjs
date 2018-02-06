@@ -1,0 +1,19 @@
+<div ng-class="createPost.showInputAddPost || createPost.edit.title !== undefined ? 'create-post-container' : 'create-post-container2'" >
+  <button ng-show="createPost.showInputCreate && createPost.edit.title === undefined" ng-click="createPost.showForm()" type="button" class="btn btn-primary">Crear Nuevo Post</button>
+  <div ng-show="createPost.showInputAddPost || createPost.edit.title !== undefined" class="create-post-container_form">
+    <div class="create-post-container_inputs">
+      <label>Título:</label>
+      <input type="text" ng-model="createPost.edit.title" >
+    </div>
+    <div class="create-post-container_inputs">
+      <label>Cuerpo:</label>
+      <input type="text" ng-model="createPost.edit.body">
+    </div>
+
+    <div edit="createPost.edit"></div>
+    <div class="create-post-container_inputs">
+      <button ng-if="!createPost.showInputAddPost" ng-click="createPost.editPost()" type="button" class="btn btn-primary">Editar</button>
+      <button ng-if="createPost.showInputAddPost" ng-click="createPost.addNewPost()" type="button" class="btn btn-primary">Añadir</button>
+    </div>
+  </div>
+</div>
