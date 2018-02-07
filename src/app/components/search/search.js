@@ -18,7 +18,7 @@
         },
 
         link : function(scope, element){
-          console.log('Controlador con el que trabajamos para la busqueda:', scope.pageController)
+          console.log('Controlador con el que trabajamos para la busqueda:....', scope.pageController)
         }
       }
     })
