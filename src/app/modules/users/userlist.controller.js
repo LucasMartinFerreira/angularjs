@@ -2,11 +2,24 @@
   'use strict';
 
   angular
-    .module('angularjs')
-    .controller('UserlistController', userlistController);
+	.module('angularjs')
+	.controller('UserlistController', UserlistController)
+	.component('userlistcomponent', userlist());
 
-  /** @ngInject */
-  function userlistController($location, userlistService, serviceGetterAndSetterUsers, ModalsService,$stateParams) {
+	function userlist() {
+		var component = {
+			templateUrl: '/app/modules/users/userlistcomponent.html',
+			controller: UserlistController,
+			bindings: {
+				filter: '<'
+			},
+			controllerAs: 'userlist'
+		};
+		return component;
+	}
+		
+
+  function UserlistController($location, userlistService, serviceGetterAndSetterUsers, ModalsService,$stateParams) {
     var vm = this;
 	
 	var temporalUserList;
@@ -29,57 +42,12 @@
 		});
 		
 	}
-		
+
 	vm.onAddClicked = function(){
-		console.log('Userlist: Añadir nuevo User')
-		ModalsService.viewModalAddUser();
+		console.log('Userlist: Añadir nuevo User');
+		ModalsService.viewModalCreateUser();
 	}
-	
-	vm.onEditClicked = function(user){
-		
-		var copiedUser = $.extend({}, user);
-	  console.log('Userlist: Editamos el User con Id:', copiedUser.id)
-	  var data ={
-		user : copiedUser
-	  }
-	  ModalsService.viewModalEditUser(copiedUser)
-		
-	}
-	
-	vm.onDeleteClicked = function(userId){
-		console.log('Userlist: Borramos el User con Id:', userId)
-		userlistService.deleteUser(userId).then(function(response){
-			console.log("Userlist: usuario borrado del servicio");
-			vm.deleteUserFromTemporalData(userId);
-		}).catch(function(err){
-			console.log(err);
-
-			vm.deleteUserFromTemporalData(userId);
-
-		});
-	}
-	
-	/**
-	* al usar un servicio dummy, no se borran realmente los datos, para que se refleje en la pantalla los eliminamos del listado local
-	*/
-	vm.deleteUserFromTemporalData = function(userId){
-		temporalUserList = serviceGetterAndSetterUsers.get();
-		var index = -1;
-		for(var i=0; i<temporalUserList.length; i++){
-			var user = temporalUserList[i];
-			if(user.id == userId){
-				index = i;
-				break;
-			}
-		}
-		if(index >= 0){
-			vm.showRefreshUserListButton = true;
-			temporalUserList.remove(index);
-		}
-		serviceGetterAndSetterUsers.set(temporalUserList);
-		vm.userListResult =  temporalUserList;
-	}
-	
+			
 	/**
 	* al usar un servicio dummy, no se borran realmente los datos, para que se refleje en la pantalla los actualizamos en el listado local
 	*/
@@ -120,7 +88,7 @@
 	  this.length = from < 0 ? this.length + from : from;
 	  return this.push.apply(this, rest);
 	};
-  }
-  
+	}
+	  
 })();
 

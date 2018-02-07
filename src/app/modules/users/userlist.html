@@ -10,26 +10,11 @@
     <button ng-click="userlist.onAddClicked()" type="button" class="btn btn-primary">AÑADIR usuario</button>
     <br/>
     
-	<div class="user-list_content-search">
-		<label>Filtrar por Nombre:</label>
-		<input type="text" ng-model="user.search.name" function-model="user">
-	</div>
+    <filter filter="userlist.userListResult"></filter>
     <hr/>
 	
-	<div class="user-list" ng-repeat ="user in userlist.userListResult | filter: user.search" >
-		<div class="user-data">
-			<div class="name"><h4>{{user.name}}</h4></div>
-			<div class="username">{{user.username}}</div>
-			<div class="email">{{user.email}}</div>
-			<div class="phone">{{user.phone}}</div>
-		</div>
-        <div class="user-list_content-bottom">
-          <button  ng-click="userlist.onEditClicked(user)" type="button" class="btn btn-primary">EDITAR usuario</button>
-        </div>
-        <div class="user-list_content-bottom">
-          <button  ng-click="userlist.onDeleteClicked(user.id)" type="button" class="btn btn-primary">BORRAR usuario</button>
-        </div>
-
+	<div class="user-list" ng-repeat ="user in userlist.userListResult | filter: userlist.filter" >
+      <user-row-component user="user"></userRowComponent>
       </div>
 
   </div>

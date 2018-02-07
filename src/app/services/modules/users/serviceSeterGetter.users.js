@@ -5,6 +5,8 @@ angular
 
     var listUsers;
 
+    var userToEdit;
+
     return {
 
       set: function (list) {
@@ -13,6 +15,14 @@ angular
 
       get: function () {
         return listUsers
+      },
+
+      setUserToEdit: function(userData){
+        this.userToEdit = userData;
+      },
+
+      getUserToEdit : function(){
+        return this.userToEdit;
       }
 
     }
