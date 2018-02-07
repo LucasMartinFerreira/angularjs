@@ -10,6 +10,16 @@
     var vm = this;
     vm.newListPost =[];
 
+    /** Objecto de elementos por los cuales se va a realizar al búsqueda **/
+    vm.fields = {
+      title: ''
+    };
+
+    vm.search = function(filter){
+        vm.filter = filter;
+    };
+
+
     var objectPost = $stateParams.objectPost;
 
     /** Esta variable nos dice si venimos de editar o eleminar **/
@@ -74,6 +84,23 @@
     };
 
 
+    var addNewPost = function(newPost){
+
+      vm.newListPost.push(newPost);
+
+      postService.getAllPosts().then(function (response) {
+        vm.listPosts = response[0].data;
+        angular.forEach(vm.listPosts, function (post) {
+            vm.newListPost.push(post)
+        });
+
+
+
+        vm.listPosts = vm.newListPost;
+      });
+    }
+
+
     /**
      * Obtenemos el listado de posts
      */
@@ -84,7 +111,9 @@
       });
     }else{
       console.log('Action', action)
-      if(action ==='edit'){
+      if(action === 'newPost'){
+        addNewPost(objectPost);
+      }else if(action ==='edit'){
         createArrayForEditListPost();
       }else{
         deleteArrayForListPost();
@@ -95,11 +124,18 @@
      * Editamos el Post
      * @param idPost
      */
-    vm.editPost = function(idPost){
+    vm.editPost = function(idPost,post){
+
       var data ={
         id : idPost
       }
       ModalsService.viewModalEditPost(data, 'editPostController')
+    };
+
+
+
+    vm.editPostComponent = function(post){
+      vm.editDataPost= post;
     };
 
     /**

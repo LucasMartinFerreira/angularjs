@@ -37,7 +37,6 @@
       };
 
 
-
       var getCommentsPosts = function(idPost){
         var configuration = headersService.headerGetCommentsListPosts(idPost);
         return HttpSrv.get(configuration);
